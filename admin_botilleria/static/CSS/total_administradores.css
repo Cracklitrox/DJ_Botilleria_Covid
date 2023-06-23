@@ -1,0 +1,37 @@
+body{
+    background-color:#b9c4c5;
+    
+}
+  /* Esto es u comentario de una sola línea en CSS */
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  /* Esto es un comentario de una sola línea en CSS */
+  nav ul li {
+    float: left;
+  }
+  /* Esto es un comentario de una sola línea en CSS */
+  nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  /* Esto es un comentario de una sola línea en CSS */
+  nav ul li a:hover {
+    background-color: #111;
+  }
+  .admin-box {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+  }
+p{
+    background-color: white;
+}  

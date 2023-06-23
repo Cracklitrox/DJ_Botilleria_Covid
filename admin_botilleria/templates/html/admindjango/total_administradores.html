@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/total_administradores.css' %}">
     <title>Total de administradores</title>
 </head>
 <body>
@@ -16,9 +17,12 @@
     </nav>
     <h1>Total de administradores</h1>
     {% for a in admin_dj %}
-        <br>*ID: {{ a.id_admin }}<br>
-        *Nombre del administrador: {{ a.nombre_admin }}<br>
-        *Contraseña: {{ a.contrasena_admin }}<br>
+    <div class="admin-box">
+        <p><strong>ID:</strong> {{ a.id_admin }}</p>
+        <p><strong>Nombre del administrador:</strong> {{ a.nombre_admin }}</p>
+        <p><strong>Contraseña:</strong> {{ a.contrasena_admin }}</p>
+    </div>
     {% endfor %}
+    
 </body>
 </html>

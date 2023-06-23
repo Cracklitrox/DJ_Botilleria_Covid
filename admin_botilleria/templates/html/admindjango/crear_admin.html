@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width==device-width, initial-scale=1.0">
     <title>Crear Administrador</title>
+    <link rel="stylesheet" href="{% static 'CSS/agregar_admin.css' %}">
 </head>
 <body>
     <nav>
@@ -13,17 +15,24 @@
             <li><a href="{% url 'admin_opc_admin' %}">Opciones de administrador</a></li>
         </ul>
     </nav>
-    <h1>Agregar Administrador</h1>
-    <form action="{% url 'crear_admin' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <pre>Nombre de usuario:                    <input type="text" name="nombre_admin"></pre>
-        <pre>Contraseña:                           <input type="text" name="contrasena_admin"></pre>
-        <pre>Confirmar contraseña:                 <input type="text" name="confirmar_contrasena_admin"></pre>
-        <input type="submit" name="opcion" value="Agregar">
-    </form>
-    <div id="idMensaje">
-        {% if mensaje %}
-            {{mensaje}}
-        {% endif %}
+    <div class="container">
+        <div class="formulario">
+          <!-- Contenido del formulario -->
+          <h1>Agregar Producto</h1>
+          <form action="{% url 'crear_admin' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <pre>Nombre de usuario:           <input type="text" name="nombre_admin"></pre>
+              <pre>Contraseña:                  <input type="text" name="contrasena_admin"></pre>
+              <pre>Confirmar contraseña:        <input type="text" name="confirmar_contrasena_admin"></pre>
+              <div id="idMensaje">
+                {% if mensaje %}
+                {{mensaje}}
+                {% endif %}
+                </div>
+                <div class="button-container">
+                    <input type="submit" name="opcion" value="Agregar">
+                </div>
+          </form>
+      </div>
     </div>
 </body>

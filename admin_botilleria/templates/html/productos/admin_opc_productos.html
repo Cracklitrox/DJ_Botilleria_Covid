@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/admin_opc_prductos.css' %}">
     <title>Administración</title>
 </head>
 <body>
@@ -14,11 +16,6 @@
         </ul>
     </nav>
     <h1>Panel de Administración de Productos</h1>
-    <div id="idMensaje">
-        {% if mensaje %}
-            {{mensaje}}
-        {% endif %}
-    </div>
     <table>
         {% if productos %}
         <th>ID</th>
@@ -37,16 +34,17 @@
                 <td>{{p.precio_producto}}</td>
                 <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}"></td>
                 <td>{{p.informacion_adicional}}</td>
-                <td><a href="{% url 'encontrar_producto' pk=p.id_producto %}">Modificar</a></td>
-                <td><a href="{% url 'eliminar_producto'  pk=p.id_producto %}">Eliminar</a></td>
+                <td><a href="{% url 'encontrar_producto' pk=p.id_producto %}"class="btm-Modificar">Modificar</a></td>
+                <td><a href="{% url 'eliminar_producto'  pk=p.id_producto %}"class="btm-Eliminar">Eliminar</a></td>
             </tr>
         {% endfor %}
         {% endif %}
     </table>
+    <div id="idMensaje">
+        {% if mensaje %}
+            {{mensaje}}
+        {% endif %}
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js" integrity="sha512-J9QfbPuFlqGD2CYVCa6zn8/7PEgZnGpM5qtFOBZgwujjDnG5w5Fjx46YzqvIh/ORstcj7luStvvIHkisQi5SKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(document).ready(function(){
-            $("idMensaje").delay(3000).fadeOut("slow");
-        });
-    </script>
+    <script src="{% static 'JS/admin_opc_prductos.js' %}"></script>
 </body>

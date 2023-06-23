@@ -134,7 +134,7 @@ def crear_admin(request):
                 "contrasena_admin" : contrasena_admin
             }
             admin_django = Admin_django.objects.create(**campos_admin)
-            context = {'mensaje': '✔ Producto guardado con éxito', 'admin_django': admin_django}
+            context = {'mensaje': '✔ Adiministrador creado con éxito', 'admin_django': admin_django}
             return render(request, 'html/admindjango/crear_admin.html', context)
         else:
             context = {'mensaje': '❌ Error: Las contraseñas deben ser iguales'}

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/admin_productos.css' %}">
     <title>Admin Productos</title>
 </head>
 <body>
@@ -15,13 +16,25 @@
         </ul>
     </nav>
     <h1>Productos</h1>
-    {% for p in productos %}
-        <br>*ID: {{ p.id_producto }}<br>
-        *Titulo: {{ p.titulo_producto }}<br>
-        *Descripción: {{ p.descripcion_producto }}<br>
-        *Precio: {{ p.precio_producto }}<br>
-        *Imagen: <img src="{{ MEDIA_URL }}{{ p.imagen.url }}" alt="Imagen del producto"><br>
-        *Informacion adicional: {{ p.informacion_adicional }}<br>
-    {% endfor %}
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Título</th>
+    <th>Descripción</th>
+    <th>Precio</th>
+    <th>Imagen</th>
+    <th>Información adicional</th>
+  </tr>
+  {% for p in productos %}
+  <tr>
+    <td>{{ p.id_producto }}</td>
+    <td>{{ p.titulo_producto }}</td>
+    <td>{{ p.descripcion_producto }}</td>
+    <td>{{ p.precio_producto }}</td>
+    <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}" alt="Imagen del producto"></td>
+    <td>{{ p.informacion_adicional }}</td>
+  </tr>
+  {% endfor %}
+</table>
 </body>
 </html>

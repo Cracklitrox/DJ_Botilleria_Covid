@@ -1,0 +1,60 @@
+body{
+    background-color:#b9c4c5;
+    
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .formulario {
+    width: 500px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+  }
+  .button-container {
+    text-align: center;
+}
+  .formulario input[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .formulario input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  /* Esto es un comentario de una sola línea en CSS */
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  /* Esto es un comentario de una sola línea en CSS */
+  nav ul li {
+    float: left;
+  }
+  /* Esto es un comentario de una sola línea en CSS */
+  nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  /* Esto es un comentario de una sola línea en CSS */
+  nav ul li a:hover {
+    background-color: #111;
+  }
+  
+
+
+  
