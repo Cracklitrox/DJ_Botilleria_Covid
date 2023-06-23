@@ -1,0 +1,278 @@
+/* Importar fuente de letra */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
+/* Importar fuente de letra */
+
+/* Fuente de Letra */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans';
+}
+/* Fuente de Letra */
+
+/* Estilos personalizados */
+.center-container{
+    width:  700px;
+    height: 530px;
+    background: rgb(242, 235, 235);
+    border-radius: 9px;
+    box-shadow: 0 0 40px -10px #948f8f;
+    margin: calc(39vh - 210px) auto;
+    padding: 1px 50px;
+    max-width: calc(100vw -30px);
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title{
+    text-align: center;
+}
+
+body{
+    background: linear-gradient(to right, #3e5151, #decba4);
+    background-color: #f8f9fa;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.center-container{
+    width:  700px;
+    height: 530px;
+    background: rgb(242, 235, 235);
+    border-radius: 9px;
+    box-shadow: 0 0 40px -10px #948f8f;
+    margin: calc(39vh - 210px) auto;
+    padding: 1px 50px;
+    max-width: calc(100vw -30px);
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+}
+/* Estilos personalizados */
+
+/* Formulario */
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group .valid-feedback,.form-group .invalid-feedback {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Validacion del Formulario */
+.form-group .valid-feedback {
+    color: #28a745;
+}
+
+/* Invalidacion del Formulario */
+.form-group .invalid-feedback {
+    color: #dc3545;
+}
+
+/* Validacion del Formulario */
+.form-group input:valid,.form-group textarea:valid {
+    border-color: #28a745;
+}
+
+/* Invalidacion del Formulario */
+.form-group input:invalid,.form-group textarea:invalid {
+    border-color: #dc3545;
+}  
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Formulario en 2 filas */
+.form-group:nth-child(1),.form-group:nth-child(2) {
+    display: inline-block;
+    width: 48%;
+}
+
+.form-group:nth-child(3),.form-group:nth-child(4) {
+    display: inline-block;
+    width: 48%;
+    margin-left: 4%;
+}
+
+.form-group:nth-child(5) {
+    clear: both;
+    margin-top: 10px;
+    width: 100%;
+}
+/* Formulario */
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group .valid-feedback,.form-group .invalid-feedback {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Validacion del Formulario */
+.form-group .valid-feedback {
+    color: #28a745;
+}
+
+/* Invalidacion del Formulario */
+.form-group .invalid-feedback {
+    color: #dc3545;
+}
+
+/* Estilo para el color de letra al error mostrado */
+#name-error,#email-error,#phone-error,#city-error,#message-error {
+    color: rgb(162, 10, 10);
+}
+
+/* Validacion del Formulario */
+.form-group input:valid,.form-group textarea:valid {
+    border-color: #28a745;
+}
+
+/* Invalidacion del Formulario */
+.form-group input:invalid,.form-group textarea:invalid {
+    border-color: #dc3545;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.form-row .form-group {
+    flex: 1 0 50%;
+    max-width: 50%;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.form-group input[type="text"],.form-group input[type="email"],.form-group input[type="tel"],.form-group textarea {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+.form-group input[type="text"]:focus,.form-group input[type="email"]:focus,.form-group input[type="tel"]:focus,.form-group textarea:focus {
+    border-color: #007bff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-group input[type="text"]:disabled,.form-group input[type="email"]:disabled,.form-group input[type="tel"]:disabled,.form-group textarea:disabled {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+/* Formulario */
+
+/* Estilos boton Enviar */
+button[type="submit"] {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #34c656;
+}
+/* Estilos boton Enviar */
+
+/* Estilos Pie de Pagina */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 50px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-about {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-contact {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-social {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-contact ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-contact li {
+    margin-bottom: 10px;
+}
+
+.footer-social ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-social li {
+    margin-bottom: 10px;
+}
+
+.footer-social a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.footer-bottom a:hover {
+    color: #8e8e8e;
+}
+
+@media only screen and (max-width: 768px) {
+    footer {
+        padding-bottom: 120px;
+    }
+}
+/* Estilos Pie de Pagina */

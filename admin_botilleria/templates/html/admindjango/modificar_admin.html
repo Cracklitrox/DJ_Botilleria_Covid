@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar administrador</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'total_administradores' %}">Todos los administradores</a></li>
+            <li><a href="{% url 'crear_admin' %}">Crear administradres</a></li>
+            <li><a href="{% url 'admin_opc_admin' %}">Opciones de administrador</a></li>
+        </ul>
+    </nav>
+    <h1>Modificar datos del administrador</h1>
+    {% if mensaje %}
+        <div>{{ mensaje }}</div>
+    {% endif %}
+    {% if admin_dj %}
+    <form action="{% url 'modificar_admin' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="id_admin" value="{{ admin_dj.id_admin }}">
+        <pre>ID administrador:                       <input type="text" name="id_admin" value="{{ admin_dj.id_admin }}" readonly></pre>
+        <pre>Nombre del administrador:               <input type="text" name="nombre_admin" value="{{ admin_dj.nombre_admin }}"></pre>
+        <pre>Contraseña:                            <input type="text" name="contrasena_admin" value="{{ admin_dj.contrasena_admin }}"></pre>
+        <input type="submit" name="opcion" value="Actualizar datos">
+    </form>
+    {% endif %}
+</body>

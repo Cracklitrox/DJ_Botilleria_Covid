@@ -1,0 +1,381 @@
+/* Aplicar fuente de letra */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Aplicar fuente de letra */
+
+/* Estilos personalizados */
+body {
+    background: linear-gradient(to right, #3e5151, #decba4);
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #24292e;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+}
+/* Estilos personalizados */
+
+/* Formulario */
+.form-container {
+background-color: #fff;
+border-radius: 3px;
+border: 1px solid #eaecef;
+padding: 24px;
+width: 340px;
+}
+
+input[type="text"],input[type="password"],input[type="submit"] {
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+input[type="text"],input[type="password"] {
+    height: 44px;
+}
+
+input[type="submit"] {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #269f42;
+}
+
+.form-control {
+    background-color: #fafbfc;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    box-shadow: none;
+    color: #24292e;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 6px 8px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.form-control:focus {
+    border-color: #2188ff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+}
+
+/* Estilo para el color de letra al error mostrado */
+#name-error,#email-error,#password-error,#confirm_password-error {
+    color: red;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+
+.input-group > .form-control {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+}
+
+.input-group > .form-control:focus {
+    z-index: 3;
+}
+
+.input-group > .input-group-btn {
+    position: relative;
+    font-size: 0;
+    white-space: nowrap;
+}
+
+.input-group > .input-group-btn > .btn {
+    position: relative;
+}
+
+.input-group > .input-group-btn > .btn:focus,.input-group > .input-group-btn > .btn:hover {
+z-index: 4;
+}
+
+.input-group-btn:not(:last-child) > .btn,.input-group-btn:not(:last-child) > .btn-group {
+    margin-right: 2px;
+}
+
+.dropdown-menu {
+    background-color: #f6f8fa;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+    padding: 12px;
+    margin-top: 2px;
+    font-size: 14px;
+    text-align: left;
+    min-width: 200px;
+}
+    
+.dropdown-item {
+    display: block;
+    width: 100%;
+    clear: both;
+    font-weight: 400;
+    color: #24292e;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.dropdown-item:focus,.dropdown-item:hover {
+    color: #0366d6;
+    background-color: #f1f8ff;
+}
+/* Formulario */
+
+/* Estilo del boton enviar */
+.btn-primary {
+    background-color: #2ea44f;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    padding: 8px 16px;
+    text-align: center;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+
+.btn-primary:hover {
+    background-color: #2c974b;
+}
+/* Estilo del boton enviar */
+
+/* Estilos para etiquetas */
+#email,#password {
+    margin-top: 16px;
+}
+/* Estilos para etiquetas */
+
+/* Estilos para la clase signup */
+.signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.signup form {
+    width: 400px;
+    background-color: #f6f8fa;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.signup .form-group {
+    margin-bottom: 16px;
+}
+
+.signup label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.signup input[type="text"],.signup input[type="password"] {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    background-color: #fafbfc;
+    line-height: 20px;
+}
+
+.signup button[type="submit"] {
+    width: 100%;
+    margin-top: 16px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #28a745;
+    border: 1px solid #28a745;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.signup button[type="submit"]:hover {
+    background-color: #269f42;
+}
+
+.signup .sign-in {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.signup .sign-in a {
+    color: #0366d6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup .sign-in a:hover {
+    text-decoration: underline;
+}
+
+.signup .error {
+    color: #cb2431;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.signup .terms {
+    margin-top: 24px;
+    font-size: 12px;
+    color: #586069;
+    line-height: 16px;
+    text-align: center;
+}
+
+.signup .terms a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.signup .terms a:hover {
+    text-decoration: underline;
+}
+/* Estilos para la clase signup */
+
+/* Estilos Pie de Pagina */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 50px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-about {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-contact {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-social {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-contact ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-contact li {
+    margin-bottom: 10px;
+}
+
+.footer-social ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-social li {
+    margin-bottom: 10px;
+}
+
+.footer-social a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.footer-bottom a:hover {
+    color: #8e8e8e;
+}
+
+@media only screen and (max-width: 768px) {
+    footer {
+        padding-bottom: 120px;
+    }
+}
+/* Estilos Pie de Pagina */

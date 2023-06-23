@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total de administradores</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'total_administradores' %}">Todos los administradores</a></li>
+            <li><a href="{% url 'crear_admin' %}">Crear administradres</a></li>
+            <li><a href="{% url 'admin_opc_admin' %}">Opciones para los administradores</a></li>
+        </ul>
+    </nav>
+    <h1>Total de administradores</h1>
+    {% for a in admin_dj %}
+        <br>*ID: {{ a.id_admin }}<br>
+        *Nombre del administrador: {{ a.nombre_admin }}<br>
+        *Contraseña: {{ a.contrasena_admin }}<br>
+    {% endfor %}
+</body>
+</html>

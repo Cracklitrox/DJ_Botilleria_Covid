@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'total_administradores' %}">Todos los administradores</a></li>
+            <li><a href="{% url 'crear_admin' %}">Crear administradres</a></li>
+            <li><a href="{% url 'admin_opc_admin' %}">Opciones para los administradores</a></li>
+        </ul>
+    </nav>
+    <h1>Panel de Administración de administradores</h1>
+    <div id="idMensaje">
+        {% if mensaje %}
+            {{mensaje}}
+        {% endif %}
+    </div>
+    <table>
+        {% if admin_dj %}
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>CONTRASEÑA</th>
+        <th>MODIFICAR</th>
+        <th>ELIMINAR</th>
+        {% for a in admin_dj %}
+            <tr>
+                <td>{{a.id_admin}}</td>
+                <td>{{a.nombre_admin}}</td>
+                <td>{{a.contrasena_admin}}</td>
+                <td><a href="{% url 'modificar_admin' pk=a.id_admin %}">Modificar</a></td>
+                
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js" integrity="sha512-J9QfbPuFlqGD2CYVCa6zn8/7PEgZnGpM5qtFOBZgwujjDnG5w5Fjx46YzqvIh/ORstcj7luStvvIHkisQi5SKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(){
+            $("idMensaje").delay(3000).fadeOut("slow");
+        });
+    </script>
+</body>

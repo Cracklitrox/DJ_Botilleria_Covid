@@ -1,0 +1,326 @@
+/* Importar fuente de letra */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
+/* Importar fuente de letra */
+
+/* Aplicar fuente de letra */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans';
+}
+/* Aplicar fuente de letra */
+
+/* Estilos personalizados */
+body{
+    background: #ffffff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffffff, #ffffff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffffff, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.clase_personalizada_img {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: auto;
+    max-height: 72000px;
+    min-height: 400px;
+    width: 100%;
+}
+
+.clase_personalizada_img img {
+    max-width: 100%;
+    border: 1px solid black;
+    border-radius: 10px; /* Agrega un borde redondeado */
+}  
+/* Estilos personalizados */
+
+/* Seccion de Productos */
+.container{
+    max-width: 1200px;
+    padding: 10px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    contain: paint;
+}
+
+.container-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(50%, 200px), 1fr));
+    grid-gap: 30px;
+    grid-auto-rows: auto;
+    justify-items: center;
+    grid-auto-flow: row;
+    width: 100%;
+    transition: .3s;
+}
+
+.container .container-items .item{
+    max-width: 200px;
+    padding: 10px;
+    margin: auto;
+    border: 1px solid #666;
+    border-radius: 10px;
+    padding: 20px;
+    transition:.3s;
+}
+
+.container-items .item:hover{
+    box-shadow: 0 0 10px #666;
+    scale: 1.05;
+}
+
+.container-items .item .img-item{
+    width: 100%;
+}
+
+.container-items .item .tittle-item{
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.container-items .item .price-item{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.container-items .item .button-item{
+    display: block;
+    margin: 10px auto;
+    border: none;
+    background: rgb(0, 0, 0);
+    color: #ffffff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* Seccion de Productos */
+
+/* Seccion del Carrito */
+.shipping{
+    border: 1px solid #666;
+    width: 35%;
+    margin-top: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: auto;
+    position: sticky !important;
+    top: 0;
+    transition: .3s;
+    opacity: 0;
+    margin-right: -100%;
+}
+
+.shipping .header-Shopping{
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.shipping .shipping-item{
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #666;
+    padding: 20px;
+}
+img-item
+.shipping .shipping-item img{
+    margin-right: 20px;
+}
+
+.shipping .shipping-item .shipping-item-tittle{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.shipping .shipping-item .selector-quantity{
+    display: inline-block;
+    margin-right: 25px;
+}
+
+.shipping .shipping-item .shipping-item-details .selector-quantity .shipping-item-quantity{
+    border: none;
+    font-size: 18px;
+    background: transparent;
+    display: inline-block;
+    width: 30px;
+    padding: 5px;
+    text-align: center;
+}
+
+.shipping .shipping-item .shipping-item-details .selector-quantity i{
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.shipping .shipping-item .shipping-item-details .shipping-item-price {
+    font-weight: bold;
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.shipping .shipping-item .btn-eliminate {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #000;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+    cursor: pointer;
+    display: block;
+    background: transparent;
+    z-index: 20;
+}
+
+.shipping .shipping-item .btn-eliminate i{
+    pointer-events: none;
+}
+
+.shipping .total-cart {
+    background-color: #b8b5b5;
+    padding: 30px;    
+}
+
+.shipping .total-cart .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.shipping .total-cart .btn-pay{
+    display: block;
+    width: 100%;
+    border: none;
+    background: #000;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.shipping .total-cart .btn-pay:hover{
+    scale: 1.05;
+}
+/* Seccion del Carrito */
+
+/* Seccion para eviter errores al minimizar la pantalla */
+@media screen and (max-width: 850px) {
+    .container {
+        display: block;
+    }
+    .container-items {
+        width: 100% !important;
+    }
+    .shipping{
+        width: 100%;
+    }
+}
+/* Seccion para eviter errores al minimizar la pantalla */
+
+/* Estilos Pie de Pagina */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 50px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-about {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-contact {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-social {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-contact ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-contact li {
+    margin-bottom: 10px;
+}
+
+.footer-social ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-social li {
+    margin-bottom: 10px;
+}
+
+.footer-social a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.footer-bottom a:hover {
+    color: #8e8e8e;
+}
+
+@media only screen and (max-width: 768px) {
+    footer {
+        padding-bottom: 120px;
+    }
+}
+/* Estilos Pie de Pagina */

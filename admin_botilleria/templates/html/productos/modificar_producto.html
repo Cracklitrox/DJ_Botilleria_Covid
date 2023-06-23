@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar producto</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'admin_productos' %}">Productos</a></li>
+            <li><a href="{% url 'crear_productos' %}">Crear productos</a></li>
+            <li><a href="{% url 'opciones_productos' %}">Modificar productos</a></li>
+        </ul>
+    </nav>
+    <h1>Modificar datos del producto</h1>
+    {% if mensaje %}
+        <div>{{ mensaje }}</div>
+    {% endif %}
+    {% if productos %}
+    <form action="{% url 'modificar_producto' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="id_producto" value="{{ productos.id_producto }}">
+        <pre>Id producto:                       <input type="text" name="id_producto" value="{{ productos.id_producto }}" readonly></pre>
+        <pre>Titulo:                            <input type="text" name="titulo" value="{{ productos.titulo_producto }}"></pre>
+        <pre>Descripción:                       <input type="text" name="descripcion" value="{{ productos.descripcion_producto }}"></pre>
+        <pre>Precio:                            <input type="number" name="precio" value="{{ productos.precio_producto }}"></pre>
+        <pre>Imagen:                            <input type="file" name="imagen" value="{{ productos.imagen }}"></pre>
+        <pre>Precio:                            <input type="text" name="adicional" value="{{ productos.informacion_adicional }}"></pre>
+        <input type="submit" name="opcion" value="Actualizar datos">
+    </form>
+    {% endif %}
+</body>
