@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
             <li><a href="{% url 'admin_productos' %}">Productos</a></li>
             <li><a href="{% url 'crear_productos' %}">Crear productos</a></li>
             <li><a href="{% url 'opciones_productos' %}">Modificar productos</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
         </ul>
     </nav>
     <h1>Panel de Administración de Productos</h1>
@@ -32,7 +33,7 @@
                 <td>{{p.titulo_producto}}</td>
                 <td>{{p.descripcion_producto}}</td>
                 <td>{{p.precio_producto}}</td>
-                <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}"></td>
+                <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}" class="tamano_imagen"></td>
                 <td>{{p.informacion_adicional}}</td>
                 <td><a href="{% url 'encontrar_producto' pk=p.id_producto %}"class="btm-Modificar">Modificar</a></td>
                 <td><a href="{% url 'eliminar_producto'  pk=p.id_producto %}"class="btm-Eliminar">Eliminar</a></td>

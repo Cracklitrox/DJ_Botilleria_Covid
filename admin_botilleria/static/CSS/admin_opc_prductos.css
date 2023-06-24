@@ -1,66 +1,72 @@
-body{
-    background-color:#b9c4c5;
-    
+body {
+  background-color: #b9c4c5;
+}
+.tamano_imagen {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: 40%;
 }
 .btm-Modificar {
-    background-color: green;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    text-align: center;
-  }
-  .btm-Eliminar {
-    background-color: rgb(123, 0, 0);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    text-align: center;
-  }
-table {
-    border-collapse: collapse;
-    width: 100%;
-    text-align: center;
-  }
-  
-  th, td {
-    border: 1px solid black;
-    padding: 8px;
-  }
-th {
-    background-color: #858181;
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
 }
-td{
+.btm-Eliminar {
+  background-color: rgb(123, 0, 0);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+th {
+  background-color: #858181;
+}
+td {
   background-color: white;
 }
-  #idMensaje {
-    background-color: #b9c4c5;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-  /* Esto es un comentario de una sola línea en CSS */
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  /* Esto es un comentario de una sola línea en CSS */
-  nav ul li {
-    float: left;
-  }
-  /* Esto es un comentario de una sola línea en CSS */
-  nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  /* Esto es un comentario de una sola línea en CSS */
-  nav ul li a:hover {
-    background-color: #111;
-  }
-  
+#idMensaje {
+  background-color: #b9c4c5;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+/* Esto es un comentario de una sola línea en CSS */
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+/* Esto es un comentario de una sola línea en CSS */
+nav ul li {
+  float: left;
+}
+/* Esto es un comentario de una sola línea en CSS */
+nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* Esto es un comentario de una sola línea en CSS */
+nav ul li a:hover {
+  background-color: #111;
+}

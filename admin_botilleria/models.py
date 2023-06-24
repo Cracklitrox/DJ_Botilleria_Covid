@@ -63,4 +63,4 @@ class Compras_Productos(models.Model):
 class Imagen(models.Model):
     id_imagen = models.AutoField(primary_key=True)
     imagen = models.ImageField()
-    descripcion_imagen = models.CharField(max_length=70)
+    descripcion_imagen = models.CharField(max_length=70,null=False)

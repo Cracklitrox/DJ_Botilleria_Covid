@@ -1,30 +1,41 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar administrador</title>
+    <link rel="stylesheet" href="{% static 'CSS/modificar_producto.css' %}">
+    <title>Modificar producto</title>
 </head>
 <body>
     <nav>
         <ul>
             <li><a href="{% url 'total_administradores' %}">Todos los administradores</a></li>
             <li><a href="{% url 'crear_admin' %}">Crear administradres</a></li>
-            <li><a href="{% url 'admin_opc_admin' %}">Opciones de administrador</a></li>
+            <li><a href="{% url 'admin_opc_admin' %}">Opciones para los administradores</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
         </ul>
     </nav>
-    <h1>Modificar datos del administrador</h1>
-    {% if mensaje %}
-        <div>{{ mensaje }}</div>
-    {% endif %}
-    {% if admin_dj %}
-    <form action="{% url 'modificar_admin' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="hidden" name="id_admin" value="{{ admin_dj.id_admin }}">
-        <pre>ID administrador:                       <input type="text" name="id_admin" value="{{ admin_dj.id_admin }}" readonly></pre>
-        <pre>Nombre del administrador:               <input type="text" name="nombre_admin" value="{{ admin_dj.nombre_admin }}"></pre>
-        <pre>Contraseña:                            <input type="text" name="contrasena_admin" value="{{ admin_dj.contrasena_admin }}"></pre>
-        <input type="submit" name="opcion" value="Actualizar datos">
-    </form>
-    {% endif %}
+    <div class="container">
+        <div class="formulario">
+            <h1>Modificar datos del administrador</h1>
+            <form action="{% url 'modificar_admin' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id_admin" value="{{ admin_dj.id_admin }}">
+                <pre>ID Administrador:              <input type="text" name="id_admin" value="{{ admin_dj.id_admin }}" readonly></pre>
+                <pre>Nombre:                        <input type="text" name="nombre_admin" value="{{ admin_dj.nombre_admin }}"></pre>
+                <pre>Contraseña Actual:             <input type="text" name="contrasena_admin" value="{{ admin_dj.contrasena_admin }}"></pre>
+                <pre>Contraseña Nueva:              <input type="text" name="contrasena_nueva1"></pre>
+                <pre>Confirmar contraseña:          <input type="text" name="contrasena_nueva2"></pre>
+                <input type="submit" name="opcion" value="Actualizar datos">
+                {% if mensaje %}
+                <div>{{ mensaje }}</div>
+                {% endif %}
+                {% if admin_dj %}
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    
 </body>
+</html>

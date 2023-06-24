@@ -5,6 +5,9 @@ from django.conf import settings
 from django.contrib.auth.models import User
 # Create your views here.
 
+def base_admin(request):
+    return render(request, "base_admin.html")
+
 # Funciones Productos
 def opc_productos(request):
     productos = Productos.objects.all()
@@ -107,10 +110,6 @@ def eliminar_producto(request, pk):
         context = {'productos': productos, 'mensaje': '🤷 Error, id del producto no encontrado'}
         return render(request, 'html/productos/admin_opc_productos.html', context)
 
-def listar_cervezas(request):
-    productos = Productos.objects.all()
-    return render(request, 'botilleria_covid_paginas/templates/html/cerveza.html',{'productos':productos})
-
 # Funciones AdminDjango
 def admin_opc_admin(request):
     admin_dj = Admin_django.objects.all()
@@ -134,7 +133,7 @@ def crear_admin(request):
                 "contrasena_admin" : contrasena_admin
             }
             admin_django = Admin_django.objects.create(**campos_admin)
-            context = {'mensaje': '✔ Adiministrador creado con éxito', 'admin_django': admin_django}
+            context = {'mensaje': '✔ Administrador creado con éxito', 'admin_django': admin_django}
             return render(request, 'html/admindjango/crear_admin.html', context)
         else:
             context = {'mensaje': '❌ Error: Las contraseñas deben ser iguales'}
@@ -142,34 +141,41 @@ def crear_admin(request):
     else:
         return render(request, 'html/admindjango/crear_admin.html')
 
-def encontrar_admin(request,pk):
-    if pk != " ":
-        admin_dj2 = Admin_django.objects.get(id_admin=pk)
-    context={'admin_dj':admin_dj2}
-    if admin_dj2:
-        return render(request,'html/admindjango/admin_opc_admin.html',context)
-    else:
-        context={'mensaje':'❌ Error, id admin no encontrado'}
-        return render(request,'html/admindjango/admin_opc_admin.html',context)
+def encontrar_admin(request, pk):
+    try:
+        admin_dj = Admin_django.objects.filter(id_admin=pk)
+        context = {'admin_dj': admin_dj}
+        return render(request, 'html/admindjango/modificar_admin.html', context)
+    except Admin_django.DoesNotExist:
+        context = {'mensaje': '❌ Error, id admin no encontrado'}
+        return render(request, 'html/admindjango/admin_opc_admin.html', context)
 
+# Pendiente obtencion de valores
 def modificar_admin(request):
     if request.method == "POST":
         id_admin = request.POST["id_admin"]
         admin_dj = get_object_or_404(Admin_django, id_admin=id_admin)
         nombre_admin = request.POST["nombre_admin"]
         contrasena_admin = request.POST["contrasena_admin"]
+        contrasena_nueva1 = request.POST["contrasena_nueva1"]
+        contrasena_nueva2 = request.POST["contrasena_nueva2"]
         cambios_realizados = False
         if admin_dj.nombre_admin != nombre_admin:
             admin_dj.nombre_admin = nombre_admin
             cambios_realizados = True
-        if admin_dj.contrasena_admin != contrasena_admin:
-            admin_dj.contrasena_admin = contrasena_admin
-            cambios_realizados = True
-        if cambios_realizados:
-            admin_dj.save()
-            mensaje = '✔ Administrador actualizado con éxito'
+            if contrasena_nueva1 != contrasena_admin:
+                if contrasena_nueva1 == contrasena_nueva2:
+                    admin_dj.contrasena_admin = contrasena_nueva1
+                    cambios_realizados = True
+                else:
+                    mensaje = 'Las contraseñas nuevas deben ser iguales'
+            else:
+                mensaje = 'La contraseña nueva no puede ser igual a la anterior'
         else:
-            mensaje = 'No se realizaron cambios en el administrador'
+            mensaje = 'No se ha realizado ningun cambio'
+        if cambios_realizados == True:
+            admin_dj.save()
+            mensaje = '✔ Administrador actualizado con exito'
         context = {'mensaje': mensaje, 'adming_dj': adming_dj}
         return render(request, 'html/admindjango/modificar_admin.html', context)
     else:
@@ -191,6 +197,16 @@ def eliminar_admin(request, pk):
         return render(request, 'html/admindjango/admin_opc_admin.html', context)
 
 # Funciones Imagen
+def opciones_imagen(request):
+    imagen = Imagen.objects.all()
+    context = {'imagen':imagen}
+    return render(request, 'html/Imagen/opciones_imagen.html', context)
+
+def admin_imagen(request):
+    imagen = Imagen.objects.all()
+    context = {'imagen':imagen}
+    return render(request, 'html/Imagen/admin_imagen.html', context)
+
 def subir_imagen(request):
     if request.method == "POST":
         imagen = request.FILES.get("imagen")
@@ -209,6 +225,66 @@ def subir_imagen(request):
     else:
         return render(request, 'html/Imagen/subir_imagen.html')
 
+def encontrar_imagen(request,pk):
+    if pk != " ":
+        imagen = Imagen.objects.get(id_imagen=pk)
+    context={'imagen':imagen}
+    if imagen:
+        return render(request,'html/Imagen/modificar_imagen.html',context)
+    else:
+        context={'mensaje':'❌ Error, id de la imagen no encontrada'}
+        return render(request,'html/Imagen/opciones_imagen.html',context)
+
+def modificar_imagen(request):
+    if request.method == "POST":
+        id_imagen = request.POST["id_imagen"]
+        imagen = get_object_or_404(Imagen, id_imagen=id_imagen)
+        file_imagen = request.FILES.get("file_imagen")
+        descripcion_imagen = request.POST["descripcion_imagen"]
+        cambios_realizados = False
+        if file_imagen:
+            if imagen.imagen:
+                ruta_imagen_anterior = os.path.join(settings.MEDIA_ROOT, str(imagen.imagen))
+                if os.path.isfile(ruta_imagen_anterior):
+                    os.remove(ruta_imagen_anterior)
+            imagen.imagen = file_imagen
+            cambios_realizados = True
+        if imagen.descripcion_imagen != descripcion_imagen:
+            imagen.descripcion_imagen = descripcion_imagen
+            cambios_realizados = True
+        if cambios_realizados:
+            imagen.save()
+            mensaje = '✔ Imagen actualizada con éxito'
+        else:
+            mensaje = 'No se realizaron cambios en la imagen'
+        context = {'mensaje': mensaje, 'imagen': imagen}
+        return render(request, 'html/Imagen/modificar_imagen.html', context)
+    else:
+        imagen = Imagen.objects.all()
+        context = {'imagen': imagen}
+        return render(request, 'html/Imagen/opciones_imagen.html', context)
+
+def eliminar_imagen(request, pk):
+    context = {}
+    try:
+        imagenes = Imagen.objects.get(id_imagen=pk)
+        imagen_url = imagenes.imagen.url
+        imagenes.delete()
+        if imagen_url:
+            ruta_imagen = os.path.abspath(os.path.join(settings.MEDIA_ROOT, imagen_url.replace('/media/', '')))
+            if os.path.isfile(ruta_imagen):
+                os.remove(ruta_imagen)
+                context = {'mensaje': '☠ Imagen eliminada con exito'}
+        imagenes = Imagen.objects.all()
+        context['imagenes'] = imagenes
+        return render(request, 'html/Imagen/opciones_imagen.html', context)
+    except Imagen.DoesNotExist:
+        imagenes = Imagen.objects.all()
+        context = {'imagenes': imagenes, 'mensaje': '🤷 Error, id de la imagen no encontrada'}
+        return render(request, 'html/Imagen/opciones_imagen.html', context)
+
+
+# Comentado por la complicacion de crear funciones para los modelos que tienen clave foranea
 # Funciones Almacen
 # def opc_almacen(request):
 #     # Obtiene todos los registros de Almacen

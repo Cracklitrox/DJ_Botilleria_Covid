@@ -7,6 +7,8 @@ from functools import wraps
 from django.http import JsonResponse
 
 
+def base(request):
+    return render(request, "base.html")
 
 def obtener_usuario_contexto(view_func):
     @wraps(view_func)
@@ -23,7 +25,7 @@ def obtener_usuario_contexto(view_func):
 
 @obtener_usuario_contexto
 def index(request, usuario):
-    return render(request, "index.html", {"usuario": usuario})
+    return render(request, "html/index.html", {"usuario": usuario})
 
 def cerrar_sesion(request):
     if "usuario_id" in request.session:

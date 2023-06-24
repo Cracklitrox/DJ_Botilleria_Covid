@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/admin_productos.css' %}">
     <title>Administración</title>
 </head>
 <body>
@@ -11,6 +13,7 @@
             <li><a href="{% url 'total_administradores' %}">Todos los administradores</a></li>
             <li><a href="{% url 'crear_admin' %}">Crear administradres</a></li>
             <li><a href="{% url 'admin_opc_admin' %}">Opciones para los administradores</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
         </ul>
     </nav>
     <h1>Panel de Administración de administradores</h1>
@@ -31,8 +34,8 @@
                 <td>{{a.id_admin}}</td>
                 <td>{{a.nombre_admin}}</td>
                 <td>{{a.contrasena_admin}}</td>
-                <td><a href="{% url 'modificar_admin' pk=a.id_admin %}">Modificar</a></td>
-                
+                <td><a href="{% url 'encontrar_admin' pk=a.id_admin %}"class="btm-Modificar">Modificar</a></td>
+                <td><a href="{% url 'eliminar_admin'  pk=a.id_admin %}"class="btm-Eliminar">Eliminar</a></td>
             </tr>
         {% endfor %}
         {% endif %}

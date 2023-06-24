@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/admin_opc_prductos.css' %}">
+    <title>Imagenes</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'admin_imagen' %}">Imagenes</a></li>
+            <li><a href="{% url 'subir_imagen' %}">Crear imagen</a></li>
+            <li><a href="{% url 'opciones_imagen' %}">Opciones imagenes</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
+        </ul>
+    </nav>
+    <h1>Panel de Administración de las imagenes</h1>
+    <table>
+        {% if imagen %}
+        <th>ID</th>
+        <th>IMAGEN</th>
+        <th>DESCRIPCION</th>
+        <th>MODIFICAR</th>
+        <th>ELIMINAR</th>
+        {% for i in imagen %}
+            <tr>
+                <td>{{i.id_imagen}}</td>
+                <td><img src="{{ MEDIA_URL }}{{ i.imagen.url }}" class="tamano_imagen"></td>
+                <td>{{i.descripcion_imagen}}</td>
+                <td><a href="{% url 'encontrar_imagen' pk=i.id_imagen %}"class="btm-Modificar">Modificar</a></td>
+                <td><a href="{% url 'eliminar_imagen'  pk=i.id_imagen %}"class="btm-Eliminar">Eliminar</a></td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <div id="idMensaje">
+        {% if mensaje %}
+            {{mensaje}}
+        {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js" integrity="sha512-J9QfbPuFlqGD2CYVCa6zn8/7PEgZnGpM5qtFOBZgwujjDnG5w5Fjx46YzqvIh/ORstcj7luStvvIHkisQi5SKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{% static 'JS/admin_opc_prductos.js' %}"></script>
+</body>

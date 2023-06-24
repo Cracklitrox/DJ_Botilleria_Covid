@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/admin_opc_prductos.css' %}">
+    <title>Administrador</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'admin_productos' %}">Productos</a></li>
+            <li><a href="{% url 'admin_opc_admin' %}">Administradores</a></li>
+            <li><a href="{% url 'opciones_imagen' %}">Imagenes</a></li>
+        </ul>
+    </nav>
+    <h1 style="text-align: center;">Pagina de administrador principal</h1>
+    <h2 style="text-align: center;">Validacion de administrador en proceso</h2>
+    <img style="display: block;margin-left: auto;margin-right: auto;" src="{% static 'programando.gif' %}" alt="Mi imagen GIF del gato programador">
+</body>
+</html>

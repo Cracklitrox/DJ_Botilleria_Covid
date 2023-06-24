@@ -1,11 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/admin_productos.css' %}">
     <title>Subir Imagen</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'admin_imagen' %}">Imagenes</a></li>
+            <li><a href="{% url 'subir_imagen' %}">Crear imagen</a></li>
+            <li><a href="{% url 'opciones_imagen' %}">Opciones imagenes</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
+        </ul>
+    </nav>
     <h1>Subir Imagen</h1>
     {% if mensaje %}
         <p>{{ mensaje }}</p>

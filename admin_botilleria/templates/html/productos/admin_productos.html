@@ -13,10 +13,12 @@
             <li><a href="{% url 'admin_productos' %}">Productos</a></li>
             <li><a href="{% url 'crear_productos' %}">Crear productos</a></li>
             <li><a href="{% url 'opciones_productos' %}">Modificar productos</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
         </ul>
     </nav>
     <h1>Productos</h1>
 <table>
+  {% if productos %}
   <tr>
     <th>ID</th>
     <th>Título</th>
@@ -31,10 +33,11 @@
     <td>{{ p.titulo_producto }}</td>
     <td>{{ p.descripcion_producto }}</td>
     <td>{{ p.precio_producto }}</td>
-    <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}" alt="Imagen del producto"></td>
+    <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}" class="tamano_imagen"></td>
     <td>{{ p.informacion_adicional }}</td>
   </tr>
   {% endfor %}
+  {% endif %}
 </table>
 </body>
 </html>

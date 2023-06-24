@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/admin_productos.css' %}">
+    <title>Admin Productos</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'admin_imagen' %}">Imagenes</a></li>
+            <li><a href="{% url 'subir_imagen' %}">Crear imagen</a></li>
+            <li><a href="{% url 'opciones_imagen' %}">Opciones imagenes</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
+        </ul>
+    </nav>
+    <h1>Imagenes</h1>
+<table>
+  {% if imagen %}
+  <tr>
+    <th>ID</th>
+    <th>Imagen</th>
+    <th>Descripción imagen</th>
+  </tr>
+  {% for i in imagen %}
+  <tr>
+    <td>{{ i.id_imagen }}</td>
+    <td><img src="{{ MEDIA_URL }}{{ i.imagen.url }}" class="tamano_imagen"></td>
+    <td>{{ i.descripcion_imagen }}</td>
+  </tr>
+  {% endfor %}
+  {% endif %}
+</table>
+</body>
+</html>
