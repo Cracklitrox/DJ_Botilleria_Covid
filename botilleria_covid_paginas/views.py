@@ -74,7 +74,7 @@ def registro(request, usuario):
         print(nombre_usuario)
         return render(request, "html/inicio_sesion.html", {"usuario": usuario})
     else:
-        return render(request, "html/inicio_sesion.html")
+        return render(request, "html/registro.html")
 
 @obtener_usuario_contexto
 def inicio_sesion(request, usuario=None):

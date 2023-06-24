@@ -22,13 +22,11 @@
     {% endif %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <label for="imagen">Imagen:</label>
-        <input type="file" name="imagen" accept="image/*" id="imagen" required>
-        <br>
-        <label for="descripcion_imagen">Descripción:</label>
-        <input type="text" name="descripcion_imagen" id="descripcion_imagen" required>
-        <br>
-        <button type="submit">Subir</button>
+        <pre>Imagen:            <input  for="imagen" type="file" name="imagen" accept="image/*" id="imagen" required></pre>
+        <pre>Descripción:       <input  for="descripcion_imagen" type="text" name="descripcion_imagen" id="descripcion_imagen" required><br></pre>
+        <div class="button-container">
+            <input type="submit" name="opcion" value="Agregar">
+        </div>
     </form>
 </body>
 </html>

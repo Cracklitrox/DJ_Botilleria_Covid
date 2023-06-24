@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,7 @@
                 <input type="hidden" name="id_admin" value="{{ admin_dj.id_admin }}">
                 <pre>ID Administrador:              <input type="text" name="id_admin" value="{{ admin_dj.id_admin }}" readonly></pre>
                 <pre>Nombre:                        <input type="text" name="nombre_admin" value="{{ admin_dj.nombre_admin }}"></pre>
-                <pre>Contraseña Actual:             <input type="text" name="contrasena_admin" value="{{ admin_dj.contrasena_admin }}"></pre>
+                <pre>Contraseña Actual:             <input type="text" name="contrasena_admin" value="{{ admin_dj.contrasena_admin }}" readonly></pre>
                 <pre>Contraseña Nueva:              <input type="text" name="contrasena_nueva1"></pre>
                 <pre>Confirmar contraseña:          <input type="text" name="contrasena_nueva2"></pre>
                 <input type="submit" name="opcion" value="Actualizar datos">
