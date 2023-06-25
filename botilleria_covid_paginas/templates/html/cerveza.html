@@ -96,6 +96,7 @@
                     <span class="tittle-item">{{ c.titulo_producto }}</span>
                     <img src="{{ MEDIA_URL }}{{ c.imagen.url }}" alt="{{ c.descripcion_producto }}" class="img-item">
                     <span class="price-item">{{ c.precio_producto }}</span>
+                    <span class="quantity_product" data-cantidad-disponible="{{ c.cantidad }}">Stock: {{ c.cantidad }}</span>
                     <button class="button-item">Agregar al Carrito</button>
                 </div>
             {% endfor %}

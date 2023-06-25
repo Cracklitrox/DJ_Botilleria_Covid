@@ -23,6 +23,7 @@
         <th>TITULO</th>
         <th>DESCRIPCION</th>
         <th>PRECIO</th>
+        <th>CANTIDAD</th>
         <th>IMAGEN</th>
         <th>INF. ADICIONAL</th>
         <th>MODIFICAR</th>
@@ -33,6 +34,7 @@
                 <td>{{p.titulo_producto}}</td>
                 <td>{{p.descripcion_producto}}</td>
                 <td>{{p.precio_producto}}</td>
+                <td>{{p.cantidad}}</td>
                 <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}" class="tamano_imagen"></td>
                 <td>{{p.informacion_adicional}}</td>
                 <td><a href="{% url 'encontrar_producto' pk=p.id_producto %}"class="btm-Modificar">Modificar</a></td>

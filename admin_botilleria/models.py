@@ -18,9 +18,10 @@ class Productos(models.Model):
     precio_producto = models.IntegerField(null=False)
     imagen = models.ImageField(null=False,verbose_name="Foto")
     informacion_adicional = models.CharField(max_length=200, null=True)
+    cantidad = models.IntegerField(null=False, default=0)
 
     def __str__(self):
-        return self.titulo_producto + ' - ' + str(self.precio_producto)
+        return self.titulo_producto + ' - ' + str(self.precio_producto) + ' = ' + str(self.cantidad)
 
 class Almacen(models.Model):
     id_producto = models.ForeignKey(Productos, on_delete=models.CASCADE)

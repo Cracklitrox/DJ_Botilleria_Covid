@@ -24,6 +24,7 @@
     <th>Título</th>
     <th>Descripción</th>
     <th>Precio</th>
+    <th>Cantidad</th>
     <th>Imagen</th>
     <th>Información adicional</th>
   </tr>
@@ -33,6 +34,7 @@
     <td>{{ p.titulo_producto }}</td>
     <td>{{ p.descripcion_producto }}</td>
     <td>{{ p.precio_producto }}</td>
+    <td>{{ p.cantidad }}</td>
     <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}" class="tamano_imagen"></td>
     <td>{{ p.informacion_adicional }}</td>
   </tr>

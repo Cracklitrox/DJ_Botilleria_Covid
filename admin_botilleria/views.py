@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Productos, Imagen, Admin_django
+from .models import Productos, Imagen, Admin_django, Almacen
 import os
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -24,10 +24,11 @@ def crear_producto(request):
         titulo = request.POST["titulo_producto"].strip()
         descripcion = request.POST["descripcion_producto"].strip()
         precio = request.POST["precio_producto"].strip()
+        cantidad = request.POST["cantidad_producto"].strip()
         imagen = request.FILES.get("imagen")
         adicional = request.POST["informacion_adicional"].strip()
-        if not (titulo and descripcion and precio):
-            context = {'mensaje': '❌ Error: Debe rellenar todos los campos que son obligatorios'}
+        if not (titulo and descripcion and precio and cantidad):
+            context = {'mensaje': '❌ Error: Debe rellenar todos los campos obligatorios'}
             return render(request, 'html/productos/crear_productos.html', context)
         if not imagen:
             context = {'mensaje': '❌ Error: Debes seleccionar una imagen'}
@@ -39,20 +40,28 @@ def crear_producto(request):
         except ValueError:
             context = {'mensaje': '❌ Error: El precio debe ser un número entero positivo'}
             return render(request, 'html/productos/crear_productos.html', context)
+        try:
+            cantidad_int = int(cantidad)
+            if cantidad_int <= 0:
+                raise ValueError
+        except ValueError:
+            context = {'mensaje': '❌ Error: La cantidad debe ser un número entero positivo'}
+            return render(request, 'html/productos/crear_productos.html', context)
         MAX_TITULO_LENGTH = 30
         MAX_DESCRIPCION_LENGTH = 50
         if len(titulo) > MAX_TITULO_LENGTH or len(descripcion) > MAX_DESCRIPCION_LENGTH:
             context = {'mensaje': f'❌ Error: El título y la descripción deben tener como máximo {MAX_TITULO_LENGTH} y {MAX_DESCRIPCION_LENGTH} caracteres respectivamente'}
             return render(request, 'html/productos/crear_productos.html', context)
-        productos_campos = {
+        producto_campos = {
             "titulo_producto": titulo,
             "descripcion_producto": descripcion,
             "precio_producto": precio,
+            "cantidad": cantidad,
             "imagen": imagen,
             "informacion_adicional": adicional
         }
-        productos = Productos.objects.create(**productos_campos)
-        context = {'mensaje': '✔ Producto guardado con éxito', 'productos': productos}
+        producto = Productos.objects.create(**producto_campos)
+        context = {'mensaje': '✔ Producto guardado con éxito', 'producto': producto}
         return render(request, 'html/productos/crear_productos.html', context)
     else:
         return render(request, 'html/productos/crear_productos.html')
@@ -74,6 +83,7 @@ def modificar_producto(request):
         titulo = request.POST["titulo"].strip()
         descripcion = request.POST["descripcion"]
         precio = request.POST["precio"].strip()
+        cantidad = request.POST["cantidad_producto"].strip()
         imagen = request.FILES.get("imagen")
         adicional = request.POST.get("adicional", "")
         cambios_realizados = False
@@ -94,6 +104,16 @@ def modificar_producto(request):
                     cambios_realizados = True
             except ValueError:
                 mensaje = "❌ Error: El precio debe ser un número entero positivo"
+        if cantidad:
+            try:
+                cantidad_int = int(cantidad)
+                if cantidad_int <= 0:
+                    raise ValueError
+                if productos.cantidad != cantidad_int:
+                    productos.cantidad = cantidad_int
+                    cambios_realizados = True
+            except ValueError:
+                mensaje = "❌ Error: La cantidad debe ser un número entero positivo"
         if imagen:
             if productos.imagen:
                 ruta_imagen_anterior = os.path.join(settings.MEDIA_ROOT, str(productos.imagen))
@@ -322,82 +342,3 @@ def eliminar_imagen(request, pk):
         imagenes = Imagen.objects.all()
         context = {'imagenes': imagenes, 'mensaje': '🤷 Error, id de la imagen no encontrada'}
         return render(request, 'html/Imagen/opciones_imagen.html', context)
-
-
-# Comentado por la complicacion de crear funciones para los modelos que tienen clave foranea
-# Funciones Almacen
-# def opc_almacen(request):
-#     # Obtiene todos los registros de Almacen
-#     almacen = Almacen.objects.all()
-#     context = {'almacen': almacen}
-#     return render(request, 'html/almacen/admin_opc_almacen.html', context)
-
-# def admin_almacen(request):
-#     # Obtiene todos los registros de Almacen
-#     almacen = Almacen.objects.all()
-#     context = {'almacen': almacen}
-#     return render(request, 'html/almacen/admin_almacen.html', context)
-
-# def almacen_producto_cantidad(request):
-#     if request.method == "POST":
-#         id_producto = request.POST["id_producto"]
-#         cantidad = request.POST["cantidad"]
-#         if id_producto and cantidad:
-#             campos_almacen = {
-#                 "id_producto": id_producto,
-#                 "cantidad": cantidad
-#             }
-#             # Crea un nuevo registro en Almacen con los campos proporcionados
-#             almacen = Almacen.objects.create(**campos_almacen)
-#             context = {'mensaje': '✔ Producto guardado con éxito', 'almacen': almacen}
-#             return render(request, 'html/stock_almacen.html', context)
-#         else:
-#             context = {'mensaje': '❌ Error: Debes completar todos los campos obligatorios'}
-#             return render(request, 'html/almacen/stock_almacen.html', context)
-#     else:
-#         return render(request, 'html/almacen/stock_almacen.html')
-
-# def encontrar_id_almacen(request, pk):
-#     if pk != " ":
-#         almacen = Almacen.objects.get(id_producto=pk)
-#     context = {'almacen': almacen}
-#     if almacen:
-#         return render(request, 'html/almacen/modificar_almacen.html', context)
-#     else:
-#         context = {'mensaje': 'Error, id producto no encontrado'}
-#         return render(request, 'html/almacen/admin_opc_almacen.html', context)
-
-# def modificar_cantidad_producto_almacen(request):
-#     if request.method == "POST":
-#         id_producto_id = request.POST["id_producto_id"]
-#         almacen = get_object_or_404(Almacen, id_producto_id=id_producto_id)
-#         cantidad = request.POST["cantidad"]
-#         cambios_realizados = False
-#         if almacen.cantidad != cantidad:
-#             almacen.cantidad = cantidad
-#             cambios_realizados = True
-#         if cambios_realizados:
-#             almacen.save()
-#             mensaje = '✔ Producto actualizado con éxito'
-#         else:
-#             mensaje = 'No se realizaron cambios en el producto'
-#         context = {'mensaje': mensaje, 'almacen': almacen}
-#         return render(request, 'html/almacen/modificar_almacen.html', context)
-#     else:
-#         almacen = Almacen.objects.all()
-#         context = {'almacen': almacen}
-#         return render(request, 'html/almacen/modificar_almacen.html', context)
-
-# def eliminar_cantidad_producto_almacen(request, pk):
-#     context = {}
-#     try:
-#         almacen = Almacen.objects.get(id_producto_id=pk)
-#         almacen.delete()
-#         context = {'mensaje': '☠ Producto eliminado correctamente'}
-#         almacen = Almacen.objects.all()
-#         context['almacen'] = almacen
-#         return render(request, 'html/almacen/admin_opc_almacen.html', context)
-#     except Almacen.DoesNotExist:
-#         almacen = Almacen.objects.all()
-#         context = {'almacen': almacen, 'mensaje': '🤷 Error, id del producto no encontrado'}
-#         return render(request, 'html/almacen/admin_opc_almacen.html', context)
