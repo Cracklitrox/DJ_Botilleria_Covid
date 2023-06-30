@@ -1,6 +1,5 @@
 from django.db import models
-from botilleria_covid_paginas.models import Usuario
-
+from botilleria_covid_paginas.models import Usuario,Contacto
 # Create your models here.
 
 class Admin_django(models.Model):
@@ -22,13 +21,6 @@ class Productos(models.Model):
 
     def __str__(self):
         return self.titulo_producto + ' - ' + str(self.precio_producto) + ' = ' + str(self.cantidad)
-
-class Almacen(models.Model):
-    id_producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
-    cantidad = models.IntegerField(null=False)
-
-    def __str__(self):
-        return str(self.id_producto) + ' = ' + str(self.cantidad)
 
 class Carrito(models.Model):
     id_carrito = models.AutoField(primary_key=True)
@@ -65,3 +57,14 @@ class Imagen(models.Model):
     id_imagen = models.AutoField(primary_key=True)
     imagen = models.ImageField()
     descripcion_imagen = models.CharField(max_length=70,null=False)
+
+class Mensaje(models.Model):
+    id_mensaje = models.AutoField(primary_key=True)
+    contacto = models.ForeignKey(Contacto, on_delete=models.CASCADE)
+    remitente = models.CharField(max_length=50)
+    asunto = models.CharField(max_length=100)
+    contenido = models.TextField()
+    fecha_envio = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Mensaje #{self.id_mensaje} - Asunto: {self.asunto}"

@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Productos, Imagen, Admin_django, Almacen
+from .models import Productos, Imagen, Admin_django, Mensaje
+from botilleria_covid_paginas.models import Usuario,Contacto
 import os
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -73,7 +74,7 @@ def encontrar_producto(request,pk):
     if productos:
         return render(request,'html/productos/modificar_producto.html',context)
     else:
-        context={'mensaje':'❌ Error, id producto no encontrado'}
+        context={'mensaje':'❌ Error, id del producto no encontrado'}
         return render(request,'html/productos/admin_opc_productos.html',context)
 
 def modificar_producto(request):
@@ -283,8 +284,6 @@ def subir_imagen(request):
     else:
         return render(request, 'html/Imagen/subir_imagen.html')
 
-
-
 def encontrar_imagen(request,pk):
     if pk != " ":
         imagen = Imagen.objects.get(id_imagen=pk)
@@ -342,3 +341,142 @@ def eliminar_imagen(request, pk):
         imagenes = Imagen.objects.all()
         context = {'imagenes': imagenes, 'mensaje': '🤷 Error, id de la imagen no encontrada'}
         return render(request, 'html/Imagen/opciones_imagen.html', context)
+
+# Funciones Usuario
+def opciones_usuario(request):
+    usuario = Usuario.objects.all()
+    context = {'usuario':usuario}
+    return render(request, 'html/usuarios/opciones_usuario.html',context)
+
+def admin_usuario(request):
+    usuario = Usuario.objects.all()
+    context = {'usuario':usuario}
+    return render(request, 'html/usuarios/admin_usuarios.html',context)
+
+def crear_usuario(request):
+    if request.method == "POST":
+        nombre_usuario = request.POST["nombre_usuario"].strip()
+        correo_usuario = request.POST["correo_usuario"].strip()
+        contrasena_usuario = request.POST["contrasena_usuario"].strip()
+        confirmar_contrasena_usuario = request.POST["confirmar_contrasena_usuario"].strip()
+        if not (nombre_usuario and correo_usuario and contrasena_usuario and confirmar_contrasena_usuario):
+            context = {'mensaje': '❌ Error: Todos los campos son obligatorios'}
+        elif contrasena_usuario == confirmar_contrasena_usuario:
+            if Usuario.objects.filter(nombre_usuario=nombre_usuario).exists():
+                context = {'mensaje': '❌ Error: El nombre de usuario ya está en uso'}
+            elif Usuario.objects.filter(correo_usuario=correo_usuario).exists():
+                context = {'mensaje': '❌ Error: El correo ingresado ya está en uso'}
+            else:
+                MAX_NOMBRE_USUARIO_LENGTH = 40
+                MAX_CORREO_USUARIO_LENGTH = 50
+                MAX_CONTRASENA_USUARIO = 30
+                if len(nombre_usuario) > MAX_NOMBRE_USUARIO_LENGTH:
+                    context = {'mensaje': f'❌ Error: El nombre de usuario debe tener como máximo {MAX_NOMBRE_USUARIO_LENGTH} caracteres'}
+                elif len(correo_usuario) > MAX_CORREO_USUARIO_LENGTH:
+                    context = {'mensaje': f'❌ Error: El correo del usuario debe tener como máximo {MAX_CORREO_USUARIO_LENGTH} caracteres'}
+                elif len(contrasena_usuario) > MAX_CONTRASENA_USUARIO:
+                    context = {'mensaje': f'❌ Error: La contraseña de usuario debe tener como máximo {MAX_CONTRASENA_USUARIO} caracteres'}
+                else:
+                    campos_usuario = {
+                        "nombre_usuario": nombre_usuario,
+                        "correo_usuario": correo_usuario,
+                        "contrasena_usuario": contrasena_usuario
+                    }
+                    usuario = Usuario.objects.create(**campos_usuario)
+                    context = {'mensaje': '✔ Usuario creado con éxito', 'usuario': usuario}
+        else:
+            context = {'mensaje': '❌ Error: Las contraseñas deben ser iguales'}
+        return render(request, 'html/usuarios/crear_usuario.html', context)
+    else:
+        return render(request, 'html/usuarios/crear_usuario.html')
+
+def encontrar_usuario(request,pk):
+    if pk != " ":
+        usuario = Usuario.objects.get(id_usuario = pk)
+    context = {'usuario':usuario}
+    if usuario:
+        return render(request,'html/usuarios/modificar_usuario.html',context)
+    else:
+        context={'mensaje':'❌ Error, id del usuario no encontrado'}
+        return render(request,'html/usuarios/admin_usuarios.html',context)
+
+def modificar_usuario(request):
+    if request.method == "POST":
+        id_usuario = request.POST["id_usuario"]
+        usuario = get_object_or_404(Usuario, id_usuario = id_usuario)
+        nombre_usuario = request.POST["nombre_usuario"].strip()
+        correo_usuario = request.POST["correo_usuario"].strip()
+        contrasena_usuario = request.POST["contrasena_usuario"].strip()
+        contrasena_nueva1 = request.POST["contrasena_nueva1"].strip()
+        contrasena_nueva2 = request.POST["contrasena_nueva2"].strip()
+        cambios_realizados = False
+        mensaje = ''
+        if nombre_usuario != "":
+            if nombre_usuario != usuario.nombre_usuario.strip():
+                if Usuario.objects.filter(nombre_usuario=nombre_usuario).exists():
+                    mensaje = '❌ Error: El nombre de usuario ya está en uso'
+                else:
+                    usuario.nombre_usuario = nombre_usuario
+                    cambios_realizados = True
+        if correo_usuario != "":
+            if correo_usuario != usuario.correo_usuario.strip():
+                if Usuario.objects.filter(correo_usuario=correo_usuario).filter():
+                    mensaje = '❌ Error: El correo del usuario ya está en uso'
+                else:
+                    usuario.correo_usuario = correo_usuario
+                    cambios_realizados = True
+        if contrasena_nueva1 != "" or contrasena_nueva2 != "":
+            if contrasena_nueva1 != contrasena_usuario:
+                if contrasena_nueva1 == contrasena_nueva2:
+                    usuario.contrasena_usuario = contrasena_nueva1
+                    cambios_realizados = True
+                else:
+                    mensaje = '❌ Error: Las contraseñas nuevas deben ser iguales'
+            else:
+                mensaje = '❌ Error: La contraseña nueva no puede ser igual a la anterior'
+        elif not cambios_realizados:
+            mensaje = '❌ Error: No se ha realizado ningún cambio'
+        if cambios_realizados:
+            usuario.save()
+            mensaje = '✔ Usuario actualizado con éxito'
+        context = {'mensaje': mensaje, 'usuario': usuario}
+        return render(request, 'html/usuarios/modificar_usuario.html', context)
+    else:
+        usuario = Usuario.objects.all()
+        context = {'usuario':usuario}
+        return render(request, 'html/usuarios/opciones_usuario.html',context)
+
+def eliminar_usuario(request,pk):
+    context = {}
+    try:
+        usuario = Usuario.objects.get(id_usuario=pk)
+        usuario.delete()
+        usuarios_totales = Usuario.objects.all()
+        context['usuarios_totales'] = usuarios_totales
+        return render(request,'html/usuarios/opciones_usuario.html',context)
+    except Usuario.DoesNotExist:
+        usuario = Usuario.objects.all()
+        context = {'usuario':usuario,'mensaje':'🤷 Error, id del usuario no encontrado'}
+        return render(request,'html/usuarios/opciones_usuarios.html',context)
+
+# Funciones Contacto
+# PENDIENTE
+def opciones_contacto(request):
+    contacto = Contacto.objects.all()
+    context = {'contacto':contacto}
+    return render(request,'html/contactos/opciones_contacto.html',context)
+
+def admin_contacto(request):
+    contacto = Contacto.objects.all()
+    context = {'contacto':contacto}
+    return render(request,'html/contactos/admin_contacto.html',context)
+
+def encontrar_contacto(request, pk):
+    if pk != " ":
+        contacto = Contacto.objects.get(id_contacto = pk)
+        context = {'contacto':contacto}
+    if contacto:
+        return render(request,'html/contactos/revisar_contacto.html',context)
+    else:
+        context = {'mensaje':'❌ Error, id del contacto no encontrado'}
+        return render(request,'html/contactos/opciones_contacto.html',context)

@@ -4,27 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width==device-width, initial-scale=1.0">
-    <title>Crear Administrador</title>
+    <title>Crear usuario</title>
     <link rel="stylesheet" href="{% static 'CSS/agregar_admin.css' %}">
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="{% url 'total_administradores' %}">Todos los administradores</a></li>
-            <li><a href="{% url 'crear_admin' %}">Crear administradres</a></li>
-            <li><a href="{% url 'admin_opc_admin' %}">Opciones de administrador</a></li>
+            <li><a href="{% url 'admin_usuarios' %}">Todos los usuarios</a></li>
+            <li><a href="{% url 'crear_usuario' %}">Crear usuario</a></li>
+            <li><a href="{% url 'opciones_usuario' %}">Opciones para los usuarios</a></li>
             <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
         </ul>
     </nav>
     <div class="container">
         <div class="formulario">
           <!-- Contenido del formulario -->
-          <h1>Agregar Producto</h1>
-          <form action="{% url 'crear_admin' %}" method="POST" enctype="multipart/form-data">
+          <h1>Agregar Usuario</h1>
+          <form action="{% url 'crear_usuario' %}" method="POST" enctype="multipart/form-data">
               {% csrf_token %}
-              <pre>Nombre de administrador:           <input type="text" name="nombre_admin"></pre>
-              <pre>Contraseña:                        <input type="text" name="contrasena_admin"></pre>
-              <pre>Confirmar contraseña:              <input type="text" name="confirmar_contrasena_admin"></pre>
+              <pre>Nombre de usuario:           <input type="text" name="nombre_usuario"></pre>
+              <pre>Correo del usuario:          <input type="text" name="correo_usuario"></pre>
+              <pre>Contraseña:                  <input type="text" name="contrasena_usuario"></pre>
+              <pre>Confirmar contraseña:        <input type="text" name="confirmar_contrasena_usuario"></pre>
               <div id="idMensaje">
                 {% if mensaje %}
                 {{mensaje}}

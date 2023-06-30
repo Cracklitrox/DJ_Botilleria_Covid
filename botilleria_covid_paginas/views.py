@@ -1,6 +1,6 @@
 from django.contrib.sessions.models import Session
 from django.shortcuts import render, redirect
-from admin_botilleria.models import Productos,Almacen
+from admin_botilleria.models import Productos
 from .models import Usuario
 from django.db.models import Q, Sum, F
 from functools import wraps
@@ -50,9 +50,6 @@ def productos(request, usuario):
         | Q(imagen__contains="vino")
         | Q(imagen__contains="whisky")
     )
-    for p in productos:
-        cantidad = Almacen.objects.filter(id_producto=p).aggregate(total_cantidad=Sum('cantidad'))['total_cantidad']
-        p.cantidad = cantidad
     return render(
         request, "html/productos.html", {"productos": productos, "usuario": usuario}
     )

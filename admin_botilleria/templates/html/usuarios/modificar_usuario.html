@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/modificar_producto.css' %}">
+    <title>Modificar producto</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'admin_usuarios' %}">Todos los usuarios</a></li>
+            <li><a href="{% url 'crear_usuario' %}">Crear usuario</a></li>
+            <li><a href="{% url 'opciones_usuario' %}">Opciones para los usuarios</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="formulario">
+            <h1>Modificar datos del usuario</h1>
+            <form action="{% url 'modificar_usuario' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id_usuario" value="{{ usuario.id_usuario }}">
+                <pre>ID Usuario:                    <input type="text" name="id_admin" value="{{ usuario.id_usuario }}" readonly></pre>
+                <pre>Nombre:                        <input type="text" name="nombre_usuario" value="{{ usuario.nombre_usuario }}"></pre>
+                <pre>Correo usuario:                <input type="text" name="correo_usuario" value="{{ usuario.correo_usuario }}"></pre>
+                <pre>Contraseña Actual:             <input type="text" name="contrasena_usuario" value="{{ usuario.contrasena_usuario }}" readonly></pre>
+                <pre>Contraseña Nueva:              <input type="text" name="contrasena_nueva1"></pre>
+                <pre>Confirmar contraseña:          <input type="text" name="contrasena_nueva2"></pre>
+                <input type="submit" name="opcion" value="Actualizar datos">
+                {% if mensaje %}
+                <div>{{ mensaje }}</div>
+                {% endif %}
+                {% if usuario %}
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    
+</body>
+</html>

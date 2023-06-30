@@ -22,7 +22,13 @@ urlpatterns = [
     path('Imagen/opciones_imagen/', views.opciones_imagen, name='opciones_imagen'),
     path('Imagen/encontrar_imagen/<str:pk>', views.encontrar_imagen, name='encontrar_imagen'),
     path('Imagen/modificar_imagen/', views.modificar_imagen, name='modificar_imagen'),
-    path('Imagen/eliminar_imagen/<str:pk>', views.eliminar_imagen, name='eliminar_imagen')
+    path('Imagen/eliminar_imagen/<str:pk>', views.eliminar_imagen, name='eliminar_imagen'),
+    path('usuarios/crear_usuario/',views.crear_usuario, name='crear_usuario'),
+    path('usuarios/admin_usuarios/',views.admin_usuario, name='admin_usuarios'),
+    path('usuarios/opciones_usuario/',views.opciones_usuario,name='opciones_usuario'),
+    path('usuarios/encontrar_usuario/<str:pk>',views.encontrar_usuario,name="encontrar_usuario"),
+    path('usuarios/modificar_usuario/',views.modificar_usuario,name='modificar_usuario'),
+    path('usuarios/eliminar_usuario/<str:pk>',views.eliminar_usuario,name='eliminar_usuario')
 ]
 
 if settings.DEBUG:

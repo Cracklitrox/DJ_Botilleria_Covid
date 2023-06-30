@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/total_administradores.css' %}">
+    <title>Total de usuarios</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'admin_usuarios' %}">Todos los usuarios</a></li>
+            <li><a href="{% url 'crear_usuario' %}">Crear usuario</a></li>
+            <li><a href="{% url 'opciones_usuario' %}">Opciones para los usuarios</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
+        </ul>
+    </nav>
+    <h1>Total de usuarios</h1>
+    {% for user in usuario %}
+    <div class="admin-box">
+        <p><strong>ID:</strong> {{ user.id_usuario }}</p>
+        <p><strong>Nombre del usuario:</strong> {{ user.nombre_usuario }}</p>
+        <p><strong>Correo del usuario:</strong> {{ user.correo_usuario }}</p>
+        <p><strong>Contraseña:</strong> {{ user.contrasena_usuario }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/admin_productos.css' %}">
+    <title>Administración</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'admin_usuarios' %}">Todos los usuarios</a></li>
+            <li><a href="{% url 'crear_usuario' %}">Crear usuario</a></li>
+            <li><a href="{% url 'opciones_usuario' %}">Opciones para los usuarios</a></li>
+            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
+        </ul>
+    </nav>
+    <h1>Panel de Administración de administradores</h1>
+    <div id="idMensaje">
+        {% if mensaje %}
+            {{mensaje}}
+        {% endif %}
+    </div>
+    <table>
+        {% if usuario %}
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>CORREO</th>
+        <th>CONTRASEÑA</th>
+        <th>MODIFICAR</th>
+        <th>ELIMINAR</th>
+        {% for user in usuario %}
+            <tr>
+                <td>{{user.id_usuario}}</td>
+                <td>{{user.nombre_usuario}}</td>
+                <td>{{user.correo_usuario}}</td>
+                <td>{{user.contrasena_usuario}}</td>
+                <td><a href="{% url 'encontrar_usuario' pk=user.id_usuario %}"class="btm-Modificar">Modificar</a></td>
+                <td><a href="{% url 'eliminar_usuario'  pk=user.id_usuario %}"class="btm-Eliminar">Eliminar</a></td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js" integrity="sha512-J9QfbPuFlqGD2CYVCa6zn8/7PEgZnGpM5qtFOBZgwujjDnG5w5Fjx46YzqvIh/ORstcj7luStvvIHkisQi5SKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(){
+            $("idMensaje").delay(3000).fadeOut("slow");
+        });
+    </script>
+</body>
