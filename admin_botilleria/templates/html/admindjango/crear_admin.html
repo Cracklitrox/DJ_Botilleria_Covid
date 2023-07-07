@@ -20,8 +20,7 @@
     </nav>
     <div class="container">
         <div class="formulario">
-            <!-- Contenido del formulario -->
-            <h1>Agregar Producto</h1>
+            <h1>Agregar administrador</h1>
             <form action="{% url 'crear_admin' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <pre>Nombre del administrador:          <input type="text" name="nombre_admin"></pre>

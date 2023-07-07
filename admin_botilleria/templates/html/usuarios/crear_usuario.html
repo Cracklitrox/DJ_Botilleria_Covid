@@ -20,7 +20,6 @@
     </nav>
     <div class="container">
         <div class="formulario">
-            <!-- Contenido del formulario -->
             <h1>Agregar Usuario</h1>
             <form action="{% url 'crear_usuario' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
