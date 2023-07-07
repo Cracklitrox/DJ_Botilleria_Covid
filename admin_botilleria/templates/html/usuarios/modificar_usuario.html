@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'CSS/modificar_producto.css' %}">
-    <title>Modificar producto</title>
+    <title>Modificar usuario</title>
 </head>
 <body>
     <nav>
@@ -22,7 +22,7 @@
             <form action="{% url 'modificar_usuario' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="id_usuario" value="{{ usuario.id_usuario }}">
-                <pre>ID Usuario:                    <input type="text" name="id_admin" value="{{ usuario.id_usuario }}" readonly></pre>
+                <pre>ID Usuario:                    <input type="text" name="id_usuario" value="{{ usuario.id_usuario }}" readonly></pre>
                 <pre>Nombre:                        <input type="text" name="nombre_usuario" value="{{ usuario.nombre_usuario }}"></pre>
                 <pre>Correo usuario:                <input type="text" name="correo_usuario" value="{{ usuario.correo_usuario }}"></pre>
                 <pre>Contraseña Actual:             <input type="text" name="contrasena_usuario" value="{{ usuario.contrasena_usuario }}" readonly></pre>

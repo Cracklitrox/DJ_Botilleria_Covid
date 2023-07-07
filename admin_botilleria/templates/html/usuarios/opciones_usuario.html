@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'CSS/admin_productos.css' %}">
-    <title>Administración</title>
+    <title>Administración usuario</title>
 </head>
 <body>
     <nav>
@@ -16,7 +16,7 @@
             <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
         </ul>
     </nav>
-    <h1>Panel de Administración de administradores</h1>
+    <h1>Panel de Administración de Usuarios</h1>
     <div id="idMensaje">
         {% if mensaje %}
             {{mensaje}}

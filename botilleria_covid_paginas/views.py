@@ -1,10 +1,8 @@
-from django.contrib.sessions.models import Session
 from django.shortcuts import render, redirect
 from admin_botilleria.models import Productos
 from .models import Usuario
-from django.db.models import Q, Sum, F
+from django.db.models import Q
 from functools import wraps
-from django.http import JsonResponse
 
 
 def base(request):
@@ -68,7 +66,6 @@ def registro(request, usuario):
             correo_usuario=correo_usuario,
             contrasena_usuario=contrasena_usuario,
         )
-        print(nombre_usuario)
         return render(request, "html/inicio_sesion.html", {"usuario": usuario})
     else:
         return render(request, "html/registro.html")

@@ -22,7 +22,7 @@
             <form action="{% url 'modificar_producto' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="id_producto" value="{{ productos.id_producto }}">
-                <pre>Id producto:                    <input type="text" name="id_producto" value="{{ productos.id_producto }}" readonly></pre>
+                <pre>ID producto:                    <input type="text" name="id_producto" value="{{ productos.id_producto }}" readonly></pre>
                 <pre>Titulo:                         <input type="text" name="titulo" value="{{ productos.titulo_producto }}"></pre>
                 <pre>Descripción:                    <input type="text" name="descripcion" value="{{ productos.descripcion_producto }}"></pre>
                 <pre>Precio:                         <input type="number" name="precio" value="{{ productos.precio_producto }}"></pre>

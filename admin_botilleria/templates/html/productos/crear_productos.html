@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width==device-width, initial-scale=1.0">
     <title>Crear Productos</title>
     <link rel="stylesheet" href="{% static 'CSS/crear_producto.css' %}">
 </head>
+
 <body>
     <nav>
         <ul>
@@ -18,27 +20,28 @@
     </nav>
     <div class="container">
         <div class="formulario">
-          <!-- Contenido del formulario -->
-          <h1>Agregar Producto</h1>
-          <form action="{% url 'crear_productos' %}" method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-              <pre>Titulo:                    <input type="text" name="titulo_producto"></pre>
-              <pre>Descripción:               <input type="text" name="descripcion_producto"></pre>
-              <pre>Precio:                    <input type="number" name="precio_producto"></pre>
-              <pre>Cantidad:                  <input type="number" name="cantidad_producto"></pre>
-              <pre>Imagen:                    <input type="file" name="imagen"></pre>
-              <pre>Información adicional:     <input type="text" name="informacion_adicional"></pre>
-              <div id="idMensaje">
-                {% if mensaje %}
+            <!-- Contenido del formulario -->
+            <h1>Agregar Producto</h1>
+            <form action="{% url 'crear_productos' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <pre>Titulo:                    <input type="text" name="titulo_producto"></pre>
+                <pre>Descripción:               <input type="text" name="descripcion_producto"></pre>
+                <pre>Precio:                    <input type="number" name="precio_producto"></pre>
+                <pre>Cantidad:                  <input type="number" name="cantidad_producto"></pre>
+                <pre>Imagen:                    <input type="file" name="imagen"></pre>
+                <pre>Información adicional:     <input type="text" name="informacion_adicional"></pre>
+                <div id="idMensaje">
+                    {% if mensaje %}
                     {{mensaje}}
-                {% endif %}
+                    {% endif %}
                 </div>
                 <div class="button-container">
                     <input type="submit" name="opcion" value="Agregar">
                 </div>
-          </form>
-      </div>
+            </form>
+        </div>
     </div>
-      <script src="{% static 'JS/mostrar.js' %}"></script>
+    <script src="{% static 'JS/mostrar.js' %}"></script>
 </body>
+
 </html>

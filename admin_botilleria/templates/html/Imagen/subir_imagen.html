@@ -20,7 +20,7 @@
     {% if mensaje %}
         <p>{{ mensaje }}</p>
     {% endif %}
-    <form method="post" enctype="multipart/form-data">
+    <form action="{% url 'subir_imagen' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <pre>Imagen:            <input  for="imagen" type="file" name="imagen" accept="image/*" id="imagen" required></pre>
         <pre>Descripción:       <input  for="descripcion_imagen" type="text" name="descripcion_imagen" id="descripcion_imagen" required><br></pre>

@@ -70,11 +70,11 @@ def crear_producto(request):
 def encontrar_producto(request,pk):
     if pk != " ":
         productos = Productos.objects.get(id_producto=pk)
-    context={'productos':productos}
+        context={'productos':productos}
     if productos:
         return render(request,'html/productos/modificar_producto.html',context)
     else:
-        context={'mensaje':'❌ Error, id del producto no encontrado'}
+        context={'mensaje':'❌ Error: ID del producto no encontrado'}
         return render(request,'html/productos/admin_opc_productos.html',context)
 
 def modificar_producto(request):
@@ -156,7 +156,7 @@ def eliminar_producto(request, pk):
         return render(request, 'html/productos/admin_opc_productos.html', context)
     except Productos.DoesNotExist:
         productos = Productos.objects.all()
-        context = {'productos': productos, 'mensaje': '🤷 Error, id del producto no encontrado'}
+        context = {'productos': productos, 'mensaje': '🤷 Error: ID del producto no encontrado'}
         return render(request, 'html/productos/admin_opc_productos.html', context)
 
 # Funciones AdminDjango
@@ -201,7 +201,7 @@ def encontrar_admin(request, pk):
     if admin_dj:
         return render(request,'html/admindjango/modificar_admin.html',context)
     else:
-        context={'mensaje':'❌ Error, id de la imagen no encontrada'}
+        context={'mensaje':'❌ Error, id del administrador no encontrado'}
         return render(request,'html/admindjango/admin_opc_admin.html',context)
 
 def modificar_admin(request):
@@ -271,12 +271,12 @@ def subir_imagen(request):
         imagen = request.FILES.get("imagen")
         descripcion_imagen = request.POST["descripcion_imagen"]
         if imagen and not descripcion_imagen.isspace():
-            productos_campos = {
+            imagen_campos = {
                 "imagen": imagen,
                 "descripcion_imagen": descripcion_imagen
             }
-            imagen = Imagen.objects.create(**productos_campos)
-            context = {'mensaje': '✔ Imagen guardada con éxito', 'imagen': imagen}
+            imagen_object = Imagen.objects.create(**imagen_campos)
+            context = {'mensaje': '✔ Imagen guardada con éxito', 'imagen': imagen_object}
             return render(request, 'html/Imagen/subir_imagen.html', context)
         else:
             context = {'mensaje': '❌ Error: Debes completar todos los campos obligatorios'}
@@ -291,7 +291,7 @@ def encontrar_imagen(request,pk):
     if imagen:
         return render(request,'html/Imagen/modificar_imagen.html',context)
     else:
-        context={'mensaje':'❌ Error, id de la imagen no encontrada'}
+        context={'mensaje':'❌ Error: ID de la imagen no encontrada'}
         return render(request,'html/Imagen/opciones_imagen.html',context)
 
 def modificar_imagen(request):
@@ -339,7 +339,7 @@ def eliminar_imagen(request, pk):
         return render(request, 'html/Imagen/opciones_imagen.html', context)
     except Imagen.DoesNotExist:
         imagenes = Imagen.objects.all()
-        context = {'imagenes': imagenes, 'mensaje': '🤷 Error, id de la imagen no encontrada'}
+        context = {'imagenes': imagenes, 'mensaje': '🤷 Error: ID de la imagen no encontrada'}
         return render(request, 'html/Imagen/opciones_imagen.html', context)
 
 # Funciones Usuario
@@ -393,11 +393,11 @@ def crear_usuario(request):
 def encontrar_usuario(request,pk):
     if pk != " ":
         usuario = Usuario.objects.get(id_usuario = pk)
-    context = {'usuario':usuario}
+        context = {'usuario':usuario}
     if usuario:
         return render(request,'html/usuarios/modificar_usuario.html',context)
     else:
-        context={'mensaje':'❌ Error, id del usuario no encontrado'}
+        context={'mensaje':'❌ Error: ID del usuario no encontrado'}
         return render(request,'html/usuarios/admin_usuarios.html',context)
 
 def modificar_usuario(request):
@@ -457,7 +457,7 @@ def eliminar_usuario(request,pk):
     except Usuario.DoesNotExist:
         usuario = Usuario.objects.all()
         context = {'usuario':usuario,'mensaje':'🤷 Error, id del usuario no encontrado'}
-        return render(request,'html/usuarios/opciones_usuarios.html',context)
+        return render(request,'html/usuarios/opciones_usuario.html',context)
 
 # Funciones Contacto
 # PENDIENTE

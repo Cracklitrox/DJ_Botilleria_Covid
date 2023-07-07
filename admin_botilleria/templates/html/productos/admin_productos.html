@@ -1,12 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'CSS/admin_productos.css' %}">
-    <title>Admin Productos</title>
+    <title>Todos los productos</title>
 </head>
+
 <body>
     <nav>
         <ul>
@@ -17,29 +19,30 @@
         </ul>
     </nav>
     <h1>Productos</h1>
-<table>
-  {% if productos %}
-  <tr>
-    <th>ID</th>
-    <th>Título</th>
-    <th>Descripción</th>
-    <th>Precio</th>
-    <th>Cantidad</th>
-    <th>Imagen</th>
-    <th>Información adicional</th>
-  </tr>
-  {% for p in productos %}
-  <tr>
-    <td>{{ p.id_producto }}</td>
-    <td>{{ p.titulo_producto }}</td>
-    <td>{{ p.descripcion_producto }}</td>
-    <td>{{ p.precio_producto }}</td>
-    <td>{{ p.cantidad }}</td>
-    <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}" class="tamano_imagen"></td>
-    <td>{{ p.informacion_adicional }}</td>
-  </tr>
-  {% endfor %}
-  {% endif %}
-</table>
+    <table>
+        {% if productos %}
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Imagen</th>
+            <th>Información adicional</th>
+        </tr>
+        {% for p in productos %}
+        <tr>
+            <td>{{ p.id_producto }}</td>
+            <td>{{ p.titulo_producto }}</td>
+            <td>{{ p.descripcion_producto }}</td>
+            <td>{{ p.precio_producto }}</td>
+            <td>{{ p.cantidad }}</td>
+            <td><img src="{{ MEDIA_URL }}{{ p.imagen.url }}" class="tamano_imagen"></td>
+            <td>{{ p.informacion_adicional }}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
 </body>
+
 </html>
