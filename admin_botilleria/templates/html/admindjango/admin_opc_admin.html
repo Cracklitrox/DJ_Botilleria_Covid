@@ -26,6 +26,7 @@
         {% if admin_dj %}
         <th>ID</th>
         <th>NOMBRE</th>
+        <th>NIVEL</th>
         <th>CONTRASEÑA</th>
         <th>MODIFICAR</th>
         <th>ELIMINAR</th>
@@ -33,6 +34,7 @@
             <tr>
                 <td>{{a.id_admin}}</td>
                 <td>{{a.nombre_admin}}</td>
+                <td>{{a.nivel_administrador}}</td>
                 <td>{{a.contrasena_admin}}</td>
                 <td><a href="{% url 'encontrar_admin' pk=a.id_admin %}"class="btm-Modificar">Modificar</a></td>
                 <td><a href="{% url 'eliminar_admin'  pk=a.id_admin %}"class="btm-Eliminar">Eliminar</a></td>

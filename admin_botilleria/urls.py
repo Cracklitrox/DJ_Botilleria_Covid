@@ -4,7 +4,9 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('base_admin/',views.base_admin,name='base_admin'),
+    path('autentificacion_administrador/',views.autentificacion_administrador,name="autentificacion"),
+    path('cerrar_sesion_admin/',views.cerrar_sesion_admin,name='cerrar_sesion_admin'),
+    path('html/base_admin/',views.base_admin,name='base_admin'),
     path('productos/crear_productos/',views.crear_producto, name='crear_productos'),
     path('productos/admin_productos/',views.admin_productos, name='admin_productos'),
     path('productos/admin_opc_productos/',views.opc_productos,name='opciones_productos'),

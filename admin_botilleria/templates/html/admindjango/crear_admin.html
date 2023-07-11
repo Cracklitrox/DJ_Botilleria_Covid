@@ -24,6 +24,14 @@
             <form action="{% url 'crear_admin' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <pre>Nombre del administrador:          <input type="text" name="nombre_admin"></pre>
+                Nivel del administrador:
+                <select name="nivel_administrador" onchange="Explicacion()">
+                    <option value="">-------</option>
+                    <option value="1">Nivel 1</option>
+                    <option value="2">Nivel 2</option>
+                    <option value="3">Nivel 3</option>
+                </select>
+                <p id="explicacion"></p>
                 <pre>Contraseña:                        <input type="text" name="contrasena_admin"></pre>
                 <pre>Confirmar contraseña:              <input type="text" name="confirmar_contrasena_admin"></pre>
                 <div id="idMensaje">
@@ -37,4 +45,6 @@
             </form>
         </div>
     </div>
+    <script src="{% static 'JS/explicacion_administrador.js' %}"></script>
 </body>
+</html>

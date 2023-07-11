@@ -24,6 +24,14 @@
                 <input type="hidden" name="id_admin" value="{{ admin_dj.id_admin }}">
                 <pre>ID Administrador:              <input type="text" name="id_admin" value="{{ admin_dj.id_admin }}" readonly></pre>
                 <pre>Nombre:                        <input type="text" name="nombre_admin" value="{{ admin_dj.nombre_admin }}"></pre>
+                Nivel del administrador:
+                <select name="nivel_administrador" onchange="Explicacion()">
+                    <option value="{{ admin_dj.nivel_administrador }}">{{ admin_dj.nivel_administrador }} Actual</option>
+                    <option value="1">Nivel 1</option>
+                    <option value="2">Nivel 2</option>
+                    <option value="3">Nivel 3</option>
+                </select>
+                <p id="explicacion"></p>
                 <pre>Contraseña Actual:             <input type="text" name="contrasena_admin" value="{{ admin_dj.contrasena_admin }}" readonly></pre>
                 <pre>Contraseña Nueva:              <input type="text" name="contrasena_nueva1"></pre>
                 <pre>Confirmar contraseña:          <input type="text" name="contrasena_nueva2"></pre>
@@ -36,6 +44,6 @@
             {% endif %}
         </div>
     </div>
-    
+    <script src="{% static 'JS/explicacion_administrador.js' %}"></script>
 </body>
 </html>

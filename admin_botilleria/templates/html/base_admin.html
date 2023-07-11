@@ -14,10 +14,16 @@
             <li><a href="{% url 'admin_opc_admin' %}">Administradores</a></li>
             <li><a href="{% url 'opciones_imagen' %}">Imagenes</a></li>
             <li><a href="{% url 'opciones_usuario' %}">Usuarios</a></li>
+            <li><a href="{% url 'cerrar_sesion_admin' %}">Cerrar Sesion</a></li>
         </ul>
     </nav>
-    <h1 style="text-align: center;">Pagina de administrador principal</h1>
-    <h2 style="text-align: center;">Validacion de administrador en proceso</h2>
+    <h1 style="text-align: center;">Panel de administración principal</h1>
+    <h2 style="text-align: center;">Bienvenido administrador {{ admin_nombre }}</h2>
+    <div id="mensaje_permisos">
+        {% if mensaje_permisos %}
+            {{mensaje_permisos}}
+        {% endif %}
+    </div>
     <img style="display: block;margin-left: auto;margin-right: auto;" src="{% static 'programando.gif' %}" alt="Mi imagen GIF del gato programador">
 </body>
 </html>
