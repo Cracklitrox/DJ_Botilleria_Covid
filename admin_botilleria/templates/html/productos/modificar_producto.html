@@ -22,22 +22,38 @@
             <form action="{% url 'modificar_producto' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="id_producto" value="{{ productos.id_producto }}">
-                <pre>ID producto:                    <input type="text" name="id_producto" value="{{ productos.id_producto }}" readonly></pre>
-                <pre>Titulo:                         <input type="text" name="titulo" value="{{ productos.titulo_producto }}"></pre>
-                <pre>Descripción:                    <input type="text" name="descripcion" value="{{ productos.descripcion_producto }}"></pre>
-                <pre>Precio:                         <input type="number" name="precio" value="{{ productos.precio_producto }}"></pre>
-                <pre>Cantidad:                       <input type="number" name="cantidad_producto" value="{{ productos.cantidad }}"></pre>
-                <pre>Imagen:                         <input type="file" name="imagen" value="{{ productos.imagen }}"></pre>
-                <pre>Informacion adicional:          <input type="text" name="adicional" value="{{ productos.informacion_adicional }}"></pre>
+                <div>ID producto:</div>
+                <input type="text" name="id_producto" value="{{ productos.id_producto }}" readonly>
+                <div>Titulo:</div>
+                <input type="text" name="titulo" value="{{ productos.titulo_producto }}">
+                <div>Descripción:</div>
+                <input type="text" name="descripcion" value="{{ productos.descripcion_producto }}">
+                <div>Precio:</div>
+                <input type="number" name="precio" value="{{ productos.precio_producto }}">
+                <div>Cantidad:</div>
+                <input type="number" name="cantidad_producto" value="{{ productos.cantidad }}">
+                <div>Imagen:</div>
+                <input type="file" name="imagen" id="inputImagen">
+                <div class="image-container">
+                    {% if productos.imagen %}
+                    <div class="existing-image">
+                        <img src="{{ productos.imagen.url }}" alt="Imagen existente">
+                    </div>
+                    {% endif %}
+                    <div class="image-preview" id="imagePreview"></div>
+                </div>
+                <div id="imagePreview"></div>
+                <div>Informacion adicional:</div>
+                <input type="text" name="adicional" value="{{ productos.informacion_adicional }}">
                 {% if mensaje %}
                 <div>{{ mensaje }}</div>
                 {% endif %}
                 {% if productos %}
                 <input type="submit" name="opcion" value="Actualizar datos">
+                {% endif %}
             </form>
-            {% endif %}
         </div>
     </div>
-    
+    <script src="{% static 'JS/mostrar_imagen.js' %}"></script>
 </body>
 </html>

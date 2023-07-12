@@ -225,15 +225,15 @@ def eliminar_producto(request, pk):
 # Funciones AdminDjango
 def admin_opc_admin(request):
     def admin_opc_admin_inner(request):
-        admin_dj = Admin_django.objects.all()
-        context = {'admin_dj':admin_dj}
+        admin = Admin_django.objects.all()
+        context = {'admin':admin}
         return render(request, 'html/admindjango/admin_opc_admin.html', context)
     return verificar_permisos_admin(request,3,'html/admindjango/admin_opc_admin.html',admin_opc_admin_inner)
 
 def total_administradores(request):
     def total_administradores_inner(request):
-        admin_dj = Admin_django.objects.all()
-        context = {'admin_dj':admin_dj}
+        admin = Admin_django.objects.all()
+        context = {'admin':admin}
         return render(request, 'html/admindjango/total_administradores.html', context)
     return verificar_permisos_admin(request,3,'html/admindjango/total_administradores.html',total_administradores_inner)
 
@@ -328,12 +328,13 @@ def eliminar_admin(request, pk):
         try:
             admin_dj = Admin_django.objects.get(id_admin=pk)
             admin_dj.delete()
-            admin_dj_total = Admin_django.objects.all()
-            context['admin_dj_total'] = admin_dj_total
+            context = {'mensaje': '☠ Administrador eliminado con exito'}
+            admin = Admin_django.objects.all()
+            context['admin'] = admin
             return render(request, 'html/admindjango/admin_opc_admin.html', context)
         except Admin_django.DoesNotExist:
-            admin_dj = Admin_django.objects.all()
-            context = {'admin_dj': admin_dj, 'mensaje': '🤷 Error, id del administrador no encontrado'}
+            admin = Admin_django.objects.all()
+            context = {'admin': admin, 'mensaje': '🤷 Error: ID del administrador no encontrado'}
             return render(request, 'html/admindjango/admin_opc_admin.html', context)
     return verificar_permisos_admin(request,3,'html/admindjango/admin_opc_admin.html',eliminar_admin_inner)
 
@@ -447,12 +448,12 @@ def eliminar_imagen(request, pk):
                 if os.path.isfile(ruta_imagen):
                     os.remove(ruta_imagen)
                     context = {'mensaje': '☠ Imagen eliminada con exito'}
-            imagenes = Imagen.objects.all()
-            context['imagenes'] = imagenes
+            imagen = Imagen.objects.all()
+            context['imagen'] = imagen
             return render(request, 'html/Imagen/opciones_imagen.html', context)
         except Imagen.DoesNotExist:
-            imagenes = Imagen.objects.all()
-            context = {'imagenes': imagenes, 'mensaje': '🤷 Error: ID de la imagen no encontrada'}
+            imagen = Imagen.objects.all()
+            context = {'imagen': imagen, 'mensaje': '🤷 Error: ID de la imagen no encontrada'}
             return render(request, 'html/Imagen/opciones_imagen.html', context)
     admin_id = request.session.get('admin_id')
     admin = Admin_django.objects.get(id_admin=admin_id)
@@ -608,14 +609,15 @@ def eliminar_usuario(request,pk):
     def eliminar_usuario_inner(request):
         context = {}
         try:
-            usuario = Usuario.objects.get(id_usuario=pk)
-            usuario.delete()
-            usuarios_totales = Usuario.objects.all()
-            context['usuarios_totales'] = usuarios_totales
+            usuarios = Usuario.objects.get(id_usuario=pk)
+            usuarios.delete()
+            context = {'mensaje': '☠ Usuario eliminado con exito'}
+            usuario = Usuario.objects.all()
+            context['usuario'] = usuario
             return render(request,'html/usuarios/opciones_usuario.html',context)
         except Usuario.DoesNotExist:
             usuario = Usuario.objects.all()
-            context = {'usuario':usuario,'mensaje':'🤷 Error, id del usuario no encontrado'}
+            context = {'usuario':usuario,'mensaje':'🤷 Error: ID del usuario no encontrado'}
             return render(request,'html/usuarios/opciones_usuario.html',context)
     admin_id = request.session.get('admin_id')
     admin = Admin_django.objects.get(id_admin=admin_id)

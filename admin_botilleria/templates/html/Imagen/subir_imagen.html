@@ -1,31 +1,41 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'CSS/subir_imagen.css' %}">
     <title>Inicio de sesión - Subir Imagen</title>
 </head>
-<nav>
-    <ul>
-        <li><a href="{% url 'admin_imagen' %}">Imagenes</a></li>
-        <li><a href="{% url 'subir_imagen' %}">Crear imagen</a></li>
-        <li><a href="{% url 'opciones_imagen' %}">Opciones imagenes</a></li>
-        <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
-    </ul>
-</nav>
+
 <body>
-    <div class="contenedor">
-        <h1>Subir Imagen</h1>
-        <form action="{% url 'subir_imagen' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <pre>Imagen:            <input  for="imagen" type="file" name="imagen" accept="image/*" id="imagen" required></pre>
-            <pre>Descripción:       <input  for="descripcion_imagen" type="text" name="descripcion_imagen" id="descripcion_imagen" required><br></pre>
-            <div class="button-container">
+    <nav>
+        <ul>
+            <li><a href="{% url 'admin_imagen' %}">Imágenes</a></li>
+            <li><a href="{% url 'subir_imagen' %}">Crear imagen</a></li>
+            <li><a href="{% url 'opciones_imagen' %}">Opciones imágenes</a></li>
+            <li><a href="{% url 'base_admin' %}">Menú administrador</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="formulario">
+            <h1>Subir Imagen</h1>
+            <form action="{% url 'subir_imagen' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="imagen">Imagen:</label>
+                <input type="file" name="imagen" accept="image/*" id="imagen" required>
+                <div class="image-preview" id="imagePreview"></div>
+                <label for="descripcion_imagen">Descripción:</label>
+                <input type="text" name="descripcion_imagen" id="descripcion_imagen" required>
                 <input type="submit" name="opcion" value="Agregar">
-            </div>
-        </form>
+                {% if mensaje %}
+                    <div>{{ mensaje }}</div>
+                {% endif %}
+            </form>
+        </div>
     </div>
+    <script src="{% static 'JS/mostrar_imagen.js' %}"></script>
 </body>
+
 </html>

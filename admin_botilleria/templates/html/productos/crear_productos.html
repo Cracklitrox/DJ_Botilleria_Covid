@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width==device-width, initial-scale=1.0">
-    <title>Crear Productos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'CSS/crear_producto.css' %}">
+    <title>Crear Productos</title>
 </head>
 
 <body>
@@ -23,15 +23,34 @@
             <h1>Agregar Producto</h1>
             <form action="{% url 'crear_productos' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <pre>Titulo:                    <input type="text" name="titulo_producto"></pre>
-                <pre>Descripción:               <input type="text" name="descripcion_producto"></pre>
-                <pre>Precio:                    <input type="number" name="precio_producto"></pre>
-                <pre>Cantidad:                  <input type="number" name="cantidad_producto"></pre>
-                <pre>Imagen:                    <input type="file" name="imagen"></pre>
-                <pre>Información adicional:     <input type="text" name="informacion_adicional"></pre>
+                <div>
+                    <label for="titulo_producto">Título:</label>
+                    <input type="text" name="titulo_producto" id="titulo_producto">
+                </div>
+                <div>
+                    <label for="descripcion_producto">Descripción:</label>
+                    <input type="text" name="descripcion_producto" id="descripcion_producto">
+                </div>
+                <div>
+                    <label for="precio_producto">Precio:</label>
+                    <input type="number" name="precio_producto" id="precio_producto">
+                </div>
+                <div>
+                    <label for="cantidad_producto">Cantidad:</label>
+                    <input type="number" name="cantidad_producto" id="cantidad_producto">
+                </div>
+                <div>
+                    <label for="imagen">Imagen:</label>
+                    <input type="file" name="imagen" id="imagen">
+                </div>
+                <div id="imagePreview" class="image-preview"></div>
+                <div>
+                    <label for="informacion_adicional">Información adicional:</label>
+                    <input type="text" name="informacion_adicional" id="informacion_adicional">
+                </div>
                 <div id="idMensaje">
                     {% if mensaje %}
-                    {{mensaje}}
+                        {{mensaje}}
                     {% endif %}
                 </div>
                 <div class="button-container">
@@ -40,7 +59,7 @@
             </form>
         </div>
     </div>
-    <script src="{% static 'JS/mostrar.js' %}"></script>
+    <script src="{% static 'JS/mostrar_imagen.js' %}"></script>
 </body>
 
 </html>

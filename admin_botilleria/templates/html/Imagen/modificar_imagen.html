@@ -1,19 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'CSS/modificar_producto.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/modificar_imagen.css' %}">
     <title>Modificar imagen</title>
 </head>
+
 <body>
     <nav>
         <ul>
-            <li><a href="{% url 'admin_imagen' %}">Imagenes</a></li>
+            <li><a href="{% url 'admin_imagen' %}">Imágenes</a></li>
             <li><a href="{% url 'subir_imagen' %}">Crear imagen</a></li>
-            <li><a href="{% url 'opciones_imagen' %}">Opciones imagenes</a></li>
-            <li><a href="{% url 'base_admin' %}">Menu administrador</a></li>
+            <li><a href="{% url 'opciones_imagen' %}">Opciones imágenes</a></li>
+            <li><a href="{% url 'base_admin' %}">Menú administrador</a></li>
         </ul>
     </nav>
     <div class="container">
@@ -22,9 +24,20 @@
             <form action="{% url 'modificar_imagen' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="id_imagen" value="{{ imagen.id_imagen }}">
-                <pre>ID imagen:                   <input type="text" name="id_imagen" value="{{ imagen.id_imagen }}" readonly></pre>
-                <pre>Imagen:                      <input type="file" name="file_imagen" value="{{ imagen.imagen }}"></pre>
-                <pre>Descripción imagen:          <input type="text" name="descripcion_imagen" value="{{ imagen.descripcion_imagen }}"></pre>
+                <div>ID imagen:</div>
+                <input type="text" name="id_imagen" value="{{ imagen.id_imagen }}" readonly>
+                <div class="image-container">
+                    {% if imagen.imagen %}
+                    <div class="existing-image">
+                        <img src="{{ imagen.imagen.url }}" alt="Imagen existente">
+                    </div>
+                    {% endif %}
+                    <div class="image-preview" id="imagePreview"></div>
+                </div>
+                <div>Imagen:</div>
+                <input type="file" name="file_imagen">
+                <div>Descripción imagen:</div>
+                <input type="text" name="descripcion_imagen" value="{{ imagen.descripcion_imagen }}">
                 <input type="submit" name="opcion" value="Actualizar datos">
                 {% if mensaje %}
                 <div>{{ mensaje }}</div>
@@ -34,6 +47,8 @@
             {% endif %}
         </div>
     </div>
-    
+
+    <script src="{% static 'JS/mostrar_imagen.js' %}"></script>
 </body>
+
 </html>

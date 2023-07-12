@@ -1,55 +1,87 @@
-body{
-    background-color:#b9c4c5;
-    
+body {
+  background-color: #b9c4c5;
 }
+
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .formulario {
-    width: 500px;
-    padding: 20px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-  }
-  
-  .formulario input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .formulario input[type="submit"]:hover {
-    background-color: #45a049;
-  }
-  /* Esto es un comentario de una sola línea en CSS */
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  /* Esto es un comentario de una sola línea en CSS */
-  nav ul li {
-    float: left;
-  }
-  /* Esto es un comentario de una sola línea en CSS */
-  nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  /* Esto es un comentario de una sola línea en CSS */
-  nav ul li a:hover {
-    background-color: #111;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.formulario {
+  width: 500px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.formulario h1 {
+  text-align: center;
+}
+
+.formulario div {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.formulario input[type="text"],
+.formulario input[type="number"],
+.formulario input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formulario input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.formulario input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.image-preview {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.image-preview img {
+  width: 20%;
+  height: auto;
+  max-width: 100%;
+  max-height: 200px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+nav ul li {
+  float: left;
+}
+
+nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: #111;
+}
