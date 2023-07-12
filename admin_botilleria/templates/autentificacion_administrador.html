@@ -5,30 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autenticación del Administrador</title>
+    <link rel="stylesheet" href="{% static 'CSS/admin_auto.css' %}">
 </head>
 <body>
-    <h1>Autenticación del Administrador</h1>
-    <form action="{% url 'autentificacion' %}" method="POST">
-        {% csrf_token %}
-        <div>
-            <label for="nombre_admin">Nombre del Administrador:</label>
-            <input type="text" id="nombre_admin" name="nombre_admin" required>
-        </div>
-        <div>
-            <label for="contrasena_admin">Contraseña:</label>
-            <input type="password" id="contrasena_admin" name="contrasena_admin" required>
-        </div>
-        <div id="mensaje_logueo">
-            {% if mensaje_logueo %}
-                {{mensaje_logueo}}
-            {% endif %}
-        </div>
-        <div id="mensaje_credencial">
-            {% if mensaje %}
-                {{mensaje}}
-            {% endif %}
-        </div>
-        <button type="submit">Ingresar</button>
-    </form>
+    <div class="contenedor">
+        <h1>Autenticación del Administrador</h1>
+        <form action="{% url 'autentificacion' %}" method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="nombre_admin">Nombre del Administrador:</label>
+                <input type="text" id="nombre_admin" name="nombre_admin" required>
+            </div>
+            <div>
+                <label for="contrasena_admin">Contraseña:</label>
+                <input type="password" id="contrasena_admin" name="contrasena_admin" required>
+            </div>
+            <div id="mensaje_logueo">
+                {% if mensaje_logueo %}
+                    {{mensaje_logueo}}
+                {% endif %}
+            </div>
+            <div id="mensaje_credencial">
+                {% if mensaje %}
+                    {{mensaje}}
+                {% endif %}
+            </div>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
 </body>
 </html>
