@@ -20,12 +20,12 @@
                 <label for="contrasena_admin">Contraseña:</label>
                 <input type="password" id="contrasena_admin" name="contrasena_admin" required>
             </div>
-            <div id="mensaje_logueo">
+            <div id="idMensaje">
                 {% if mensaje_logueo %}
                     {{mensaje_logueo}}
                 {% endif %}
             </div>
-            <div id="mensaje_credencial">
+            <div id="idMensaje">
                 {% if mensaje %}
                     {{mensaje}}
                 {% endif %}
@@ -33,5 +33,6 @@
             <button type="submit">Ingresar</button>
         </form>
     </div>
+    <script src="{% static 'JS/admin_opc_prductos.js' %}"></script>
 </body>
 </html>

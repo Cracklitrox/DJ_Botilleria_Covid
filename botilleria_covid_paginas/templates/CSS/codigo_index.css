@@ -2,71 +2,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
 /* Importar fuente de letra */
 
-/* Importar fuente de letra importada en el proyecto */
-@font-face {
-    font-family: 'calendas_plusregular';
-    src: url('../FONTS/calendas_plus-webfont.eot');
-    src: url('../FONTS/calendas_plus-webfont.eot?#iefix') format('embedded-opentype'), url('../FONTS/calendas_plus-webfont.woff2') format('woff2'), url('../FONTS/calendas_plus-webfont.woff') format('woff'), url('../FONTS/calendas_plus-webfont.ttf') format('truetype'), url('../FONTS/calendas_plus-webfont.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-family: 'calendas_plusregular', cursive;
-}
-/* Importar fuente de letra importada en el proyecto */
-
-/* Aplicar fuente de letra */
-#hero {
-    font-family: 'calendas_plusregular', cursive;
-}  
-
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans';
-}
-/* Aplicar fuente de letra */
-
 /* Estilos personalizados */
-body{
+body {
     background: linear-gradient(to right, #3e5151, #decba4);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    color: #fff;
+    font-family: 'Open Sans';
+    margin: 0;
+    padding: 0;
 }
-/* Estilos personalizados */
 
-/* Estilos personalizados carrusel */
-.carousel-item img {
+.container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+h1 {
+    font-weight: 500;
+}
+
+h3 {
+    margin-bottom: 20px;
+}
+
+p {
+    font-weight: 300;
+}
+
+#myCarousel .carousel-item img {
     border-radius: 25px;
     overflow: hidden;
     object-fit: cover;
 }
-.carousel-control-prev {
-    background-color: #3b313131;
-    width: 10%;
-}
+
+.carousel-control-prev,
 .carousel-control-next {
-    background-color: #3b313131;
+    background-color: rgba(0, 0, 0, 0.5);
     width: 10%;
 }
-/* Estilos personalizados carrusel */
 
-/* Estilos texto */
-.text-left {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
+.carousel-indicators {
+    bottom: -40px;
 }
 
-.text-left ul {
-    margin: 0;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #fff;
 }
-/* Estilos texto */
 
-/* Estilos Pie de Pagina */
 footer {
     background-color: #333;
-    color: #fff;
     padding: 50px 0;
 }
 
@@ -78,37 +65,21 @@ footer {
     margin: 0 auto;
 }
 
-.footer-about {
-    flex-basis: 30%;
-    margin-bottom: 20px;
-}
-
-.footer-contact {
-    flex-basis: 30%;
-    margin-bottom: 20px;
-}
-
+.footer-about,
+.footer-contact,
 .footer-social {
     flex-basis: 30%;
     margin-bottom: 20px;
 }
 
-.footer-contact ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.footer-contact li {
-    margin-bottom: 10px;
-}
-
+.footer-contact ul,
 .footer-social ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
+.footer-contact li,
 .footer-social li {
     margin-bottom: 10px;
 }
@@ -136,10 +107,3 @@ footer {
 .footer-bottom a:hover {
     color: #8e8e8e;
 }
-
-@media only screen and (max-width: 768px) {
-    footer {
-        padding-bottom: 120px;
-    }
-}
-/* Estilos Pie de Pagina */

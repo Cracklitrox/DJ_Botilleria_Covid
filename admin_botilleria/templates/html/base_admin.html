@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'CSS/admin_opc_prductos.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/base_admin.css' %}">
     <title>Panel de administración</title>
 </head>
 <body>
@@ -12,18 +12,19 @@
         <ul>
             <li><a href="{% url 'admin_productos' %}">Productos</a></li>
             <li><a href="{% url 'admin_opc_admin' %}">Administradores</a></li>
-            <li><a href="{% url 'opciones_imagen' %}">Imagenes</a></li>
+            <li><a href="{% url 'opciones_imagen' %}">Imágenes</a></li>
             <li><a href="{% url 'opciones_usuario' %}">Usuarios</a></li>
-            <li><a href="{% url 'cerrar_sesion_admin' %}">Cerrar Sesion</a></li>
+            <li><a href="{% url 'cerrar_sesion_admin' %}">Cerrar Sesión</a></li>
         </ul>
     </nav>
-    <h1 style="text-align: center;">Panel de administración principal</h1>
-    <h2 style="text-align: center;">Bienvenido administrador {{ admin_nombre }}</h2>
-    <div id="mensaje_permisos">
+    <h1>Panel de administración principal</h1>
+    <h2>Bienvenido administrador {{ admin_nombre }}</h2>
+    <div style="text-align: center;" id="idMensaje">
         {% if mensaje_permisos %}
-            {{mensaje_permisos}}
+            {{ mensaje_permisos }}
         {% endif %}
     </div>
-    <img style="display: block;margin-left: auto;margin-right: auto;" src="{% static 'programando.gif' %}" alt="Mi imagen GIF del gato programador">
+    <img src="{% static 'programando.gif' %}" alt="Mi imagen GIF del gato programador">
+    <script src="{% static 'JS/admin_opc_prductos.js' %}"></script>
 </body>
 </html>

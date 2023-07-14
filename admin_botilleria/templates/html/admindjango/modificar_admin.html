@@ -22,9 +22,11 @@
             <form action="{% url 'modificar_admin' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="id_admin" value="{{ admin_dj.id_admin }}">
-                <pre>ID Administrador:              <input type="text" name="id_admin" value="{{ admin_dj.id_admin }}" readonly></pre>
-                <pre>Nombre:                        <input type="text" name="nombre_admin" value="{{ admin_dj.nombre_admin }}"></pre>
-                Nivel del administrador:
+                <div>ID Administrador:</div>
+                <input type="text" name="id_admin" value="{{ admin_dj.id_admin }}" readonly>
+                <div>Nombre:</div>
+                <input type="text" name="nombre_admin" value="{{ admin_dj.nombre_admin }}">
+                <div>Nivel del administrador:</div>
                 <select name="nivel_administrador" onchange="Explicacion()">
                     <option value="{{ admin_dj.nivel_administrador }}">{{ admin_dj.nivel_administrador }} Actual</option>
                     <option value="1">Nivel 1</option>
@@ -32,18 +34,24 @@
                     <option value="3">Nivel 3</option>
                 </select>
                 <p id="explicacion"></p>
-                <pre>Contraseña Actual:             <input type="text" name="contrasena_admin" value="{{ admin_dj.contrasena_admin }}" readonly></pre>
-                <pre>Contraseña Nueva:              <input type="text" name="contrasena_nueva1"></pre>
-                <pre>Confirmar contraseña:          <input type="text" name="contrasena_nueva2"></pre>
+                <div>Contraseña Actual:</div>
+                <input type="text" name="contrasena_admin" value="{{ admin_dj.contrasena_admin }}" readonly>
+                <div>Contraseña Nueva:</div>
+                <input type="text" name="contrasena_nueva1">
+                <div>Confirmar contraseña:</div>
+                <input type="text" name="contrasena_nueva2">
                 <input type="submit" name="opcion" value="Actualizar datos">
-                {% if mensaje %}
-                <div>{{ mensaje }}</div>
-                {% endif %}
+                <div id="idMensaje">
+                    {% if mensaje %}
+                        {{mensaje}}
+                    {% endif %}
+                </div>
                 {% if admin_dj %}
             </form>
             {% endif %}
         </div>
-    </div>
+    </div>    
     <script src="{% static 'JS/explicacion_administrador.js' %}"></script>
+    <script src="{% static 'JS/admin_opc_prductos.js' %}"></script>
 </body>
 </html>

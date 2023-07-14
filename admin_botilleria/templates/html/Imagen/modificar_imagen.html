@@ -39,16 +39,18 @@
                 <div>Descripción imagen:</div>
                 <input type="text" name="descripcion_imagen" value="{{ imagen.descripcion_imagen }}">
                 <input type="submit" name="opcion" value="Actualizar datos">
-                {% if mensaje %}
-                <div>{{ mensaje }}</div>
-                {% endif %}
+                <div id="idMensaje">
+                    {% if mensaje %}
+                        {{mensaje}}
+                    {% endif %}
+                </div>
                 {% if imagen %}
             </form>
             {% endif %}
         </div>
     </div>
-
     <script src="{% static 'JS/mostrar_imagen.js' %}"></script>
+    <script src="{% static 'JS/admin_opc_prductos.js' %}"></script>
 </body>
 
 </html>

@@ -45,9 +45,11 @@
                 <div id="imagePreview"></div>
                 <div>Informacion adicional:</div>
                 <input type="text" name="adicional" value="{{ productos.informacion_adicional }}">
-                {% if mensaje %}
-                <div>{{ mensaje }}</div>
-                {% endif %}
+                <div id="idMensaje">
+                    {% if mensaje %}
+                        {{mensaje}}
+                    {% endif %}
+                </div>
                 {% if productos %}
                 <input type="submit" name="opcion" value="Actualizar datos">
                 {% endif %}
@@ -55,5 +57,6 @@
         </div>
     </div>
     <script src="{% static 'JS/mostrar_imagen.js' %}"></script>
+    <script src="{% static 'JS/admin_opc_prductos.js' %}"></script>
 </body>
 </html>
